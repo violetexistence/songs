@@ -1,6 +1,6 @@
 # SPHERES OF INFLUENCE IN FERELDEN
 
-Spheres of influence represent important and noteworthy regions, resources, and structures within Ferelden. Each sphere includes multiple contact of potential value to the bard. Any time your song acquires a new Sphere of Influence, you will choose any one contact that is *loyal* to the bard (this does not render them beyond manipulation)
+Spheres of influence represent important and noteworthy regions, resources, and structures within Ferelden. Each sphere includes multiple contacts of potential value to the bard. Any time your song acquires a new Sphere of Influence, you will choose any one contact that is *loyal* to the bard (this does not render them beyond manipulation)
 
 You receives the other contacts for your sphere as well, though they do not start off loyal. In addition, the bard may undertake a **long-term project**, wooing any of the below contacts without holding the Sphere of Influence of which they are part.
 
@@ -60,6 +60,6 @@ Perks: **+2d** to **Transport Engagements**. There are few places in the Ferelde
 
 Contacts: **Bellanaris**, a Dalish Wanderer; **Sister**, a Forest Spirit; **Cormac**, a Seeker of Relics
 
-Faction with Holding: **Fen'Harel's Wrath**
+Faction with Holding: **Dreadwolf**
 
 Perks: **+1 result level** for **Alchemical Crafting**. **+1d on **engagement rolls** for stealth and arcane errands in this location.
