@@ -1,6 +1,40 @@
-# THOSE WHO RULE
+# Factions
 
-## The Divine
+| Tier | Those Who Rule | Status |
+| ---: | ------ | --- |
+| VI | [The Divine](#the-divine) | |
+| V | [House Valmont](#house-valmont) | |
+| IV | House Hightower | |
+| IV | House Hightower | |
+| III | House Cousland | |
+| III | House Guerrin | |
+| II | House Howe | |
+
+| Tier | Those Who Follow | Status |
+| ---: | ------ | --- |
+| V | Bank of Brass and Bone | |
+| IV | Schola Lucrosia | |
+| IV | [Deshyr Trade Assembly](#deshyr-trade-assembly) | |
+| III | Blackstone Irregulars | |
+| III | The Code | |
+| II | The Bakers | |
+| II | The Ironmongers | |
+| II | The Dockers | |
+| II | The City Watch | |
+| II | The Mercy | |
+
+| Tier | Those Who Struggle | Status |
+| ---: | ------ | --- |
+| IV | Dreadwolf | |
+| IV | Colvin Providence | |
+| III | Calenhad Charter | |
+| III | Warbanner | |
+| II | The Foundation | |
+| II | Jackalweres | |
+| II | Tenpenny | |
+| II | The Alienage | |
+
+## The Divine <a name="the-divine"></a>
 **Tier 6** <br />
 At the head of the Chantry is the Divine, who leads from her seat in the Grand Cathedral in Val Royeaux. Below her are the Left and Right Hands of the Divine. These are her personal agents and act as her voice is she is not otherwise present.
 
@@ -32,12 +66,10 @@ The Chantry's faith is rooted in four core principles.
 
 **Long Term Objective:** Spread the Chant of Light to all four corners of the world and to all races.
 
-## House Valmont
+## House Valmont <a name="house-valmont"></a>
 **Tier 5** <br />
 
-# THOSE WHO FOLLOW
-
-## Deshyr Trade Assembly
+## Deshyr Trade Assembly <a name="#deshyr-trade-assembly"></a>
 **Tier 4** <br />
 The Deshyr are a powerful and extensively connected guild comprised of surface dwarves. Some of the guild's members left the dwarven city of Orzammar to pursue business and trade on the surface while others joined after being exiled from the city. The Deshyr's leaders can always trace their lineage back to the Noble and Merchant houses in Orzammar. Its main role is to regulat trade between Orzammar and the surface.
 
