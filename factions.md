@@ -18,9 +18,13 @@ The Chantry's faith is rooted in four core principles.
 
 **Reputation:** The Emperor is in control of Orlais, but The Divine controls the minds of faithful all over Thedas. On occassion The Divine may play the Grand Game, even play it well, but the Chantry itself carefully avoids feeding the idea. Their meddling happens through private audiences with The Left Hand or else directly when maleficarum is involved.
 
+<hr />
+
 **Enemies:** The Argent Spire
 
 **Allies:** The Templar Order, The Seekers of Truth, Most Devout Heads of State
+
+<hr />
 
 **Situation:** Any request for aid from The Chantry comes with strings attached. It is well known that Faustine II wants her legacy to be improving the lives of elves. The Left Hand performs assessments. The Divine recommends improvements. The Right Hand ensures those improvments are unimpeded. Faustine is advanced in age and has already named her successor, Cerise Montfort . It is rumored that the successor already operates as The Divine in all but name.
 
@@ -34,7 +38,30 @@ The Chantry's faith is rooted in four core principles.
 # THOSE WHO FOLLOW
 
 ## Deshyr Trade Assembly
+**Tier 4** <br />
+The Deshyr are a powerful and extensively connected guild comprised of surface dwarves. Some of the guild's members left the dwarven city of Orzammar to pursue business and trade on the surface while others joined after being exiled from the city. The Deshyr's leaders can always trace their lineage back to the Noble and Merchant houses in Orzammar. Its main role is to regulat trade between Orzammar and the surface.
 
+The upper-class surface dwarf members of the Deshyr are composed of two distinct groups: the **kalna** who insist on maintaining caste and rank and **ascendant** who believe in leaving Orzammar's traditions behind and embracing surface life.
+
+**NPCs:** **Bianca Davri**, a Kalna Smith (*versed, damaged, secretive*); **Bartrand Tethras**, Ascendant Negotiator (*outrageous, massive, disillusioned*); **Dusan Vasca**, Noble Scion (*successful, peaceful, tenuous*)
+
+**Notable Assets:** Lyrium Trade, Ander Artisans, Maps of the Deep Roads
+
+**Reputation:** The line between respactable dwarven merchant and criminal carta thug can be tenuous. Officially, the Deshyr engage in legitimate trade only. However, it is well known that contraband and illicit services are available for a price to their loyal clients. The Deshyr are ambitious, business-minded operators, with eyes for long term opportunity. They keep contracts with individuals, not governments. There is always a price to buy themselves out of such contracts, in the event they become a liability. This helps them mitigate more disastrous political entanglements.
+
+<hr />
+
+**Enemies:** Bank of Brass and Bone
+
+**Allies:** The Ironmongers, Legion of the Dead, Various Independent Traders
+
+<hr />
+
+**Situation:** The Deshyr Trade Assembly's influence in Ferelden has grown from a handful of routes throughout Thedas to a financial powerhouse, bringing in goods from the far reaches of the world and commanding exorbinant prices. If they can secure the trade lanes to Antiva it will afford them the assets to purchase King Meghren's debt outright, giving them considerable sway with the crown and, therefor, sway over the laws governing trade in Ferelden.
+
+**Short Term Objective:** Establish trade lane to Antiva.
+
+**Long Term Objective:** Buy out debt across Thedas and compete with The Bank of Brass and Bone.
 
 # THOSE WHO STRUGGLE
 
