@@ -19,7 +19,7 @@
 | III | The Code | |
 | II | The Bakers | |
 | II | The Ironmongers | |
-| II | The Dockers | |
+| II | [The Dockers](#the-dockers) | |
 | II | The City Watch | |
 | II | The Mercy | |
 
@@ -48,7 +48,7 @@ The Chantry's faith is rooted in four core principles.
 
 **NPCs:** **Faustine II**, The Divine (*progressive, proud, demanding*); **Jaeneve**, The Left Hand (*toothesome, festive, sharp*); **Michel**, The Right Hand (*glamorous, petite, guarded*); **Cerise Montfort**, Successor (*sweltering, acceptable, parismonious*)
 
-**Notable Assets:** The Grand Cathedral, All Lyrium Supply Outside Orzammar, Right of Annulment, Donations and Tithes Across Thedas
+**Notable Assets:** Lyrium, Right of Annulment, Chantries Across Thedas
 
 **Reputation:** The Emperor is in control of Orlais, but The Divine controls the minds of faithful all over Thedas. On occassion The Divine may play the Grand Game, even play it well, but the Chantry itself carefully avoids feeding the idea. Their meddling happens through private audiences with The Left Hand or else directly when maleficarum is involved.
 
@@ -78,7 +78,7 @@ Florian is rumored to have taken his youngest cousin Meghren as lover. Recently,
 
 **Notable Assets:** Royal Palace, Chevaliers, Dozens of Outposts on the Imperial Highway
 
-**Reputation:** "Good King" Meghren is a seen as an effete puppet. The more he attempts to win the love and respect of Fereldens by aping their customs, the more they despise him. Paying respect to House Valmont in public continues to be the best politics, however, since Orlesian power remains the dominant force in Ferelden.
+**Reputation:** "Good King" Meghren is a seen as an effete figurehead. The more he attempts to win the love and respect of Fereldens by aping their customs, the more they despise him. Paying respect to House Valmont in public continues to be the best politics, however, since Orlesian power remains the dominant force in Ferelden. Most consider Severan to be the real power behind the throne.
 
 **Enemies:** House Theirin
 
@@ -115,3 +115,28 @@ The upper-class surface dwarf members of the Deshyr are composed of two distinct
 **Short Term Objective:** Establish trade lane to Antiva.
 
 **Long Term Objective:** Buy out debt across Thedas and compete with The Bank of Brass and Bone.
+
+## The Dockers <a name="the-dockers"></a>
+**Tier II** <br />
+
+Hard-bitten laborers who work the docks in Denerim. Somewhat foolishly, the Orlesians had assumed that they were going to be able to annex Ferelden's land much like they did in the Dales. In doing so, they built impressive docks fit for warships, used stone masonry techniques known only to their kind, and created aqueduct system that provided fresh water to the city's denizens.
+
+**NPCs:** **Ghin**, Dockmaster (*moldy, mellow, functional*); **Kinclaith**, a Loadmaster (*wistful, frantic, steady*); **Bryce**, Enforcer (*large, scattered, soft*)
+
+**Notable Assets:** Shipyards, Manpower, Professional Tools
+
+**Reputation:** The Dockers are a solid, hardworking lot, with their own principles and sense of justice; transgressors on their turf rarely make it out of the docks. They take care of their own, above all, and offer som eof the best paying jobs to which a common citizen can aspire. The Dockers could strike at any time and completely cripple the city.
+
+<hr />
+
+**Enemies:** Calvin Providence
+
+**Allies:** The Foundation
+
+<hr />
+
+**Situation:** The Dockers have worked hard for the past sixteen months on King Meghren's new warship, with months of labor left to finish it. Security at the worksite is tight, even slowing things down on occassion. To make matters worse, old lifts have been breaking left and right, injuring more than a handful of Dockers. Ghin is pressing the city to invest in new equipment and raise the pay of Dockers.
+
+**Short Term Objective:** Finish work on the King's new warship.
+
+**Long Term Objective:** Secure better working conditions.
