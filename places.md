@@ -1,8 +1,8 @@
 # SPHERES OF INFLUENCE IN FERELDEN
 
-Spheres of influence represent important and noteworthy regions, resources, and structures within Ferelden. Each sphere includes multiple contacts of potential value to the bard. Any time your song acquires a new Sphere of Influence, you will choose any one contact that is *loyal* to the bard (this does not render them beyond manipulation)
+Spheres of influence represent important and noteworthy regions, resources, and structures within Ferelden. Each sphere includes multiple contacts of potential value to the bard. Any time your song acquires a new Sphere of Influence, you will choose any one contact that is *loyal* to the bard (this does not render them beyond manipulation).
 
-You receives the other contacts for your sphere as well, though they do not start off loyal. In addition, the bard may undertake a **long-term project**, wooing any of the below contacts without holding the Sphere of Influence of which they are part.
+You receive the other contacts for your sphere as well, though they do not start off loyal. In addition, the bard may undertake a **long-term project**, wooing any of the below contacts without holding the Sphere of Influence of which they are part.
 
 Each faction on the list of *Those Who Rule* has a number of Spheres of Influence based on its ranking.
 

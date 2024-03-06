@@ -5,7 +5,6 @@
 | VI | [The Divine](#the-divine) | |
 | V | [House Valmont](#house-valmont) | |
 | IV | House Hightower | |
-| IV | House Hightower | |
 | III | House Cousland | |
 | III | House Guerrin | |
 | II | House Howe | |
@@ -70,9 +69,9 @@ The Chantry's faith is rooted in four core principles.
 **Tier 5** <br />
 The royal family of Orlais, the House of Valmont has placed one of its scions on the Imperial since the end of the Exalted Age. Today, in addition to the main royal branch, there are four cadet branches: Montfort, Reynaud, Campana, and de Chalons. 
 
-The current Emperor, Florian, was the second son of Emperor Judicael and was never meant to ascend to the Orlesian throne. His elder brother, Judicael II had two twin sons and was therefore secure in his line. Florian was free to pursue other interests, none of which involved the Grand Game. Most of the Imperial Court ignored him, and that was the way he liked it. An outbreak of the Hundred Days Cough in 8:77 Blessed changed his plans as both of Judicael's sons perished, as did Florian's own daughter. Judicael was thrown off his horse during a fox hunt in 8:84 Blessed, catapulting Florian onto the throne. Famously, his response to the chevaliers delivering the news at his estate is said to be, "*This will not do at all*."
+The current Emperor, Florian, was the second son of Emperor Judicael and was never meant to ascend to the Orlesian throne. His elder brother, Judicael II, had two twin sons and was therefore secure in his line. Florian was free to pursue other interests, none of which involved the Grand Game. Most of the Imperial Court ignored him, and that was the way he liked it. An outbreak of the Hundred Days Cough in 8:77 Blessed changed his plans as both of Judicael's sons perished, as did Florian's own daughter. Judicael was thrown off his horse during a fox hunt in 8:84 Blessed, catapulting Florian onto the throne. Famously, his response to the chevaliers delivering the news at his estate is said to be, "*This will not do at all*."
 
-Florian is rumored to have taken his youngest cousin Meghren as lover. Recently, a quarrel between them ended with Florian sending Meghren to govern the rebellious province of Ferelden as punishment for his offense.
+Florian is rumored to have taken his youngest cousin Meghren as a lover. Recently, a quarrel between them ended with Florian sending Meghren to govern the rebellious province of Ferelden as punishment for his offense.
 
 **NPCs:** **Meghren**, King of Ferelden (*messy, pink, needy*); **Felix**, Commander of Imperial Forces (*inquisitive, wooden, divergent*); **Severan**, Court Mage (*reflective, impolite, savory*)
 
@@ -110,7 +109,7 @@ The upper-class surface dwarf members of the Deshyr are composed of two distinct
 
 <hr />
 
-**Situation:** The Deshyr Trade Assembly's influence in Ferelden has grown from a handful of routes throughout Thedas to a financial powerhouse, bringing in goods from the far reaches of the world and commanding exorbinant prices. If they can secure the trade lanes to Antiva it will afford them the assets to purchase King Meghren's debt outright, giving them considerable sway with the crown and, therefor, sway over the laws governing trade in Ferelden.
+**Situation:** The Deshyr Trade Assembly's influence in Ferelden has grown from a handful of routes throughout Thedas to a financial powerhouse, bringing in goods from the far reaches of the world and commanding exorbinant prices. If they can secure the trade lanes to Antiva it will afford them the assets to purchase King Meghren's debt outright, giving them considerable sway with the crown and, therefore, sway over the laws governing trade in Ferelden.
 
 **Short Term Objective:** Establish trade lane to Antiva.
 
