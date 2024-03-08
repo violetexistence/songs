@@ -5,6 +5,7 @@
 | VI | [The Divine](#the-divine) | |
 | V | [House Valmont](#house-valmont) | |
 | IV | House Hightower | |
+| IV | House Theirin | |
 | III | House Cousland | |
 | III | House Guerrin | |
 | II | House Howe | |
@@ -16,7 +17,7 @@
 | IV | [Deshyr Trade Assembly](#deshyr-trade-assembly) | |
 | III | Blackstone Irregulars | |
 | III | The Code | |
-| II | The Bakers | |
+| II | [The Bakers](#the-bakers) | |
 | II | The Ironmongers | |
 | II | [The Dockers](#the-dockers) | |
 | II | The City Watch | |
@@ -32,6 +33,13 @@
 | II | Jackalweres | |
 | II | Tenpenny | |
 | II | The Alienage | |
+
+## The Bakers <a name="the-bakers"></a>
+**Tier II** <br />
+
+The Baker's Guild is responsible for the milling and distribution of Ryott throughout the Bannorn and charged with the logistics of feeding much of the country by extension. Wealthy houses with fine cooks and pull-cart cake vendors in Bard's Alley must all seek charter from the Baker's Guild before being gaining access to a stable supply of flour.
+
+NPCs: Vita Coordinator
 
 ## The Divine <a name="the-divine"></a>
 **Tier 6** <br />
@@ -128,7 +136,7 @@ Hard-bitten laborers who work the docks in Denerim. Somewhat foolishly, the Orle
 
 <hr />
 
-**Enemies:** Calvin Providence
+**Enemies:** Colvin Providence
 
 **Allies:** The Foundation
 
