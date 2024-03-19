@@ -6,7 +6,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-build": "docker build -t journal-frontend .",
+    "docker-run": "docker run --rm -p 3000:3000 -v $(pwd):/app journal-frontend"
   },
   "dependencies": {
     "@types/jest": "^29.5.12",
