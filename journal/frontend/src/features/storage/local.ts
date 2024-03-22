@@ -9,7 +9,6 @@ type LocalStorageReturnValue<TValue> = [TValue | null, (v: LocalStorageSetStateV
 export function useLocalStorage<TValue = string>(key: string, defaultValue: TValue | null = null): LocalStorageReturnValue<TValue> {
   const [localState, updateLocalState] = useState<TValue | null>(() => {
     const existingStoredValue = getFromStore<TValue>(key)
-    console.log('loaded stored values: ' + JSON.stringify(existingStoredValue))
     return existingStoredValue ?? defaultValue
   })
 

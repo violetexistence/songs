@@ -55,9 +55,7 @@ class MemoryStore implements Store {
 const store: Store = localStorageAvailable() ? new LocalStore() : new MemoryStore()
 
 export function writeToStore<TValue>(key: string, value: TValue) {
-  
   try {
-    console.log('about to store: ' + value)
     const serializedValue = typeof value === 'object' ? JSON.stringify(value) : `${value}`
     store.setItem(key, serializedValue)
     sendStorageChangeEvent({ key, value })

@@ -43,8 +43,8 @@ export function Contacts() {
     writeContacts(prev => prev?.filter(c => c.id !== id) || [])
   }
 
-  if (!(contacts?.map instanceof Function)) {
-    console.log(`What is map? ${contacts}`)
+  const handleUpdate = (updated: Contact) => {
+    writeContacts(list => list?.map(c => c.id === updated.id ? {...updated} : c) || [])
   }
   
   return (
@@ -52,7 +52,7 @@ export function Contacts() {
       <NewContactCard onClick={handleNewContactClick} />      
       {contacts && contacts.map && contacts.map(c => {
         const avatar = avatars[Number(c.id) % avatars.length]
-        return <ContactCard key={c.id} {...c} avatar={avatar} onDelete={handleDelete} />
+        return <ContactCard key={c.id} {...c} avatar={avatar} onDelete={handleDelete} onUpdate={handleUpdate} />
       })}
     </CardContainer>
   )
