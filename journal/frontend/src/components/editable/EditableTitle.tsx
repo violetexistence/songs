@@ -1,15 +1,19 @@
+import Markdown from 'react-markdown';
+import './EditableTitle.css'
 import React, { ReactNode, useEffect, useState } from "react";
 
 export type EditableTitleProps = {
   children: ReactNode | ReactNode[],
+  type: 'title' | 'markdown'
   text?: string,
   placeholder?: string,
-  childRef?: React.RefObject<HTMLInputElement>,
+  childRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>,
   onSubmit?: () => void,
   onCancel?: () => void
 }
 
 export function EditableTitle({
+  type,
   text,
   placeholder = 'Editable content',
   childRef,
@@ -40,23 +44,30 @@ export function EditableTitle({
   }
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    setEditing(v => !v)
+    if (!isEditing) {
+      setEditing(true)
+    }
     event.stopPropagation()
   }
 
   const handleBlur = () => {
+    onCancel && onCancel();
     setEditing(false)
   }
 
   return (
-    <section {...props} onClick={handleClick}>
+    <section className='editable-title' {...props} onClick={handleClick}>
       { isEditing ? (
         <div onBlur={handleBlur} onKeyDown={handleKeyDown}>
           {children}
         </div>
       ) : (
         <div>
-          <h4>{ text || placeholder }</h4>
+          {type === 'title' ? (
+            <h4>{ text || placeholder }</h4>
+          ) : (
+            <Markdown>{ text || placeholder }</Markdown>
+          )}
         </div>
       )}
     </section>

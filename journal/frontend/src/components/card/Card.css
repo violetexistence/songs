@@ -27,23 +27,6 @@ body {
   object-position: top;
 }
 
-.card h4 {
-  padding: 10px 6px;
-  margin: 0;
-  font-size: medium;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card p {
-  padding: 0 6px;
-  margin: 0;
-  font-size: small;
-  font-weight: normal;
-  font-style: italic;
-}
-
 .card-container {
   display: flex;
   gap: 10px;

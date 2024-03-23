@@ -1,3 +1,4 @@
+import './ContactCard.css'
 import React, { useRef, useState } from "react";
 import { Card } from "../../components/card/Card";
 import { EditableTitle } from "../../components/editable/EditableTitle";
@@ -15,8 +16,10 @@ export type ContactCardProps = Contact & {
 }
 
 export function ContactCard({id, name, abstract, avatar, onDelete, onUpdate}: ContactCardProps) {
-  const [currentName, setCurrentName] = useState(name);
-  const nameRef = useRef<HTMLInputElement>(null);
+  const [currentName, setCurrentName] = useState(name)
+  const [currentAbstract, setCurrentAbstract] = useState(abstract)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const abstractRef = useRef<HTMLTextAreaElement>(null)
 
   const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     onDelete && onDelete(id)
@@ -27,16 +30,25 @@ export function ContactCard({id, name, abstract, avatar, onDelete, onUpdate}: Co
     setCurrentName(name)
   }
 
-  const handleNameChange = () => {
+  const handleCancelAbstractChange = () => {
+    setCurrentAbstract(abstract)
+  }
+
+  const handleChange = () => {
     onUpdate && onUpdate({
-      id, abstract, avatar,
-      name: currentName
+      id, avatar,
+      name: currentName,
+      abstract: currentAbstract
     })
   }
 
   return (
     <Card imageUrl={avatar}>
-      <EditableTitle text={name} childRef={nameRef} onCancel={handleCancelNameChange} onSubmit={handleNameChange}>
+      <EditableTitle type='title'
+                     text={name} 
+                     childRef={nameRef} 
+                     onCancel={handleCancelNameChange} 
+                     onSubmit={handleChange}>
         <input type='text'                 
                name='contact-name' 
                ref={nameRef}
@@ -44,7 +56,19 @@ export function ContactCard({id, name, abstract, avatar, onDelete, onUpdate}: Co
                value={currentName} 
                onChange={e => setCurrentName(e.target.value)} />
       </EditableTitle>
-      <p>{abstract}</p>
+      <EditableTitle type='markdown'
+                     text={abstract}
+                     childRef={abstractRef}
+                     onCancel={handleCancelAbstractChange}
+                     onSubmit={handleChange}>
+        <textarea name='contact-abstract' 
+                  ref={abstractRef}
+                  placeholder='Enter notes (markdown ok)'
+                  value={currentAbstract}
+                  onChange={e => setCurrentAbstract(e.target.value)}>
+          {abstract}
+        </textarea>
+      </EditableTitle>
       <button onClick={handleDeleteClick}>delete</button>
     </Card>
   )

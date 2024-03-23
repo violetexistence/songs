@@ -1,0 +1,29 @@
+.editable-title {
+  input, textarea, h4, p {
+    font-family: var(--font-fam);
+    font-size: medium;
+    font-weight: bold;
+    color: unset;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 1em;
+    display: block;
+  }
+
+  textarea, p {
+    font-family: var(--font-fam);
+    font-size: small;
+    font-weight: normal;
+  }
+
+  textarea {
+    width: 215px;
+  }
+
+  h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
