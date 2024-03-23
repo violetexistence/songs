@@ -11,6 +11,10 @@
     display: block;
   }
 
+  input {
+    width: 208px;
+  }
+
   textarea, p {
     font-family: var(--font-fam);
     font-size: small;
@@ -19,6 +23,8 @@
 
   textarea {
     width: 215px;
+    height: 160px;
+    resize: none;
   }
 
   h4 {

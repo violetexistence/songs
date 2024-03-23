@@ -4,10 +4,10 @@ import { receiveStorageChangeEvents } from "./events"
 import { deleteFromStore, getFromStore, writeToStore } from "./store"
 
 type LocalStorageSetStateValue<TValue> = TValue | ((prevState: TValue | null) => TValue)
-type LocalStorageReturnValue<TValue> = [TValue | null, (v: LocalStorageSetStateValue<TValue>) => void, () => void];
+type LocalStorageReturnValue<TValue> = [TValue, (v: LocalStorageSetStateValue<TValue>) => void, () => void];
 
-export function useLocalStorage<TValue = string>(key: string, defaultValue: TValue | null = null): LocalStorageReturnValue<TValue> {
-  const [localState, updateLocalState] = useState<TValue | null>(() => {
+export function useLocalStorage<TValue = string>(key: string, defaultValue: TValue): LocalStorageReturnValue<TValue> {
+  const [localState, updateLocalState] = useState<TValue>(() => {
     const existingStoredValue = getFromStore<TValue>(key)
     return existingStoredValue ?? defaultValue
   })

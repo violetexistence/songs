@@ -8,12 +8,11 @@ import avatar6 from '../../assets/avatar6.png'
 import avatar7 from '../../assets/avatar7.png'
 import avatar8 from '../../assets/avatar8.png'
 import avatar9 from '../../assets/avatar9.png'
-import plus from '../../assets/plus.svg'
-import { Card, CardContainer } from "../../components/card/Card"
-import { useLocalStorage } from "../storage/local"
-import { Contact, ContactCard } from './ContactCard'
-
-const initialContacts: Contact[] = [];
+import { CardItem } from "../../components/card/Card"
+import { CardContainer } from '../../components/card/CardContainer'
+import { Contact, useContacts } from './Contact'
+import { ContactFront } from './ContactFront'
+import './Contacts.css'
 
 const avatars = [
   avatar1,
@@ -28,40 +27,35 @@ const avatars = [
   avatar13
 ]
 
-export function Contacts() {
-  const [contacts, writeContacts] = useLocalStorage('journal-contacts', initialContacts)
-  const handleNewContactClick = () => {
-    const newContact = {
-      id: new Date().getTime(),
-      name: 'New Card',
-      abstract: 'Lorem ipsum dolor sit amet.'
-    }
-    writeContacts(contacts?.concat(newContact) || [newContact])
+function fromContact(contact: Contact): CardItem {
+  return {
+    id: contact.id,
+    imageUrl: avatars[contact.id % avatars.length],
+    data: contact
   }
+}
+
+export function Contacts() {
+  const { contacts, remove, save, saveAll } = useContacts()
+  const cardItems = contacts?.map(fromContact) || []
 
   const handleDelete = (id: number) => {
-    writeContacts(prev => prev?.filter(c => c.id !== id) || [])
+    remove(id)
   }
 
   const handleUpdate = (updated: Contact) => {
-    writeContacts(list => list?.map(c => c.id === updated.id ? {...updated} : c) || [])
+    save(updated)
+  }
+
+  const handleReorder = (items: CardItem[]) => {
+    saveAll(items.map(i => i.data))
+  }
+
+  const contactTemplate = (item: CardItem) => {
+    return <ContactFront {...item.data} onDelete={handleDelete} onUpdate={handleUpdate} />
   }
   
   return (
-    <CardContainer>
-      <NewContactCard onClick={handleNewContactClick} />      
-      {contacts && contacts.map && contacts.map(c => {
-        const avatar = avatars[Number(c.id) % avatars.length]
-        return <ContactCard key={c.id} {...c} avatar={avatar} onDelete={handleDelete} onUpdate={handleUpdate} />
-      })}
-    </CardContainer>
-  )
-}
-
-function NewContactCard({ onClick }: { onClick: () => void }) {
-  return (
-    <Card defaultSide='front' disableFlip onClick={onClick}>
-      <img src={plus} alt='New Contact' />
-    </Card>
+      <CardContainer items={cardItems} template={contactTemplate} onReorder={handleReorder} />
   )
 }
