@@ -1,19 +1,22 @@
 body {
   --card-background-color: rgb(37, 35, 35);
+  --card-size: 240px;
 }
 
 .card {
   position: relative;
+  height: var(--card-size);
+  width: var(--card-size);
 
   .font, .back {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
     background-color: var(--card-background-color);
-    height: 240px;
-    width: 240px;
     display: flex;
     flex-direction: column;
+    height: var(--card-size);
+    width: var(--card-size);
     
     &:hover {
       box-shadow: 0 8px 16px 0 rgba(234, 136, 136, 0.2);
@@ -31,13 +34,13 @@ body {
 
   img {
     border-radius: 5px 5px 0 0;
-    height: 240px;
-    width: 240px;
+    height: var(--card-size);
+    width: var(--card-size);
     object-fit: cover;
     object-position: top;
   }
 
-  .menu-button {
+  .toggle-menu-button {
     background: none;
     position: absolute;
     right: 0;
@@ -48,11 +51,6 @@ body {
     &:hover {
       opacity: 0.6;
       cursor: pointer;
-    }
-    
-    img {
-      width: 50px;
-      height: 50px;
     }
   }
 
@@ -72,7 +70,7 @@ body {
 
     /* From https://css.glass */
     background: rgba(22, 22, 22, 0.2);
-    border-radius: 16px;
+    border-radius: 5px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);

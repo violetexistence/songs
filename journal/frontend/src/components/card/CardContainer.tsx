@@ -1,7 +1,6 @@
 import {
   DndContext,
   DragEndEvent,
-  DragStartEvent,
   PointerSensor,
   closestCenter,
   useSensor,
@@ -12,28 +11,26 @@ import {
   arraySwap,
   rectSwappingStrategy
 } from '@dnd-kit/sortable';
-import { ReactNode, useState } from "react";
-import { CardItem, SortableCard } from './Card';
+import { ReactNode } from "react";
+import { CardItem } from './Card';
+import { SortableCard } from './SortableCard';
 
 export type CardContainerProps = {
   items: CardItem[];
-  template: (item: CardItem) => ReactNode
+  cardFront: (item: CardItem) => ReactNode
+  cardBack?: (item: CardItem) => ReactNode
+  cardMenu?: (item: CardItem) => ReactNode
   onReorder?: (items: CardItem[]) => void;
 };
 
-export function CardContainer({items, template, onReorder}: CardContainerProps) {
-  const [activeId, setActiveId] = useState<string | null>(null)
-  const sensors = useSensors(
+export function CardContainer({items, cardFront, cardBack, cardMenu, onReorder}: CardContainerProps) {
+    const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 6
       }
     })
   );
-
-  const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(event.active.id.toString())
-  }
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
@@ -45,18 +42,17 @@ export function CardContainer({items, template, onReorder}: CardContainerProps) 
 
       onReorder(reordered)
     }
-
-    setActiveId(null)
   };
 
   return (
     <section className='card-container'>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={items} strategy={rectSwappingStrategy}>
             {items.map(i => {
               return (
-                <SortableCard key={i.id} item={i}>
-                  {template(i)}
+                <SortableCard key={i.id} item={i} menu={cardMenu && cardMenu(i)}>
+                  {cardFront(i)}
+                  {cardBack && cardBack(i)}
                 </SortableCard>
               )
             })}

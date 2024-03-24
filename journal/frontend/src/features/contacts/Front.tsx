@@ -2,22 +2,17 @@ import React, { useRef, useState } from "react";
 import { EditableTitle } from "../../components/editable/EditableTitle";
 import { Contact } from './Contact';
 
-export type ContactCardProps = Contact & {
+export type FrontProps = Contact & {
   onDelete?: (id: number) => void
   onUpdate?: (updated: Contact) => void
 }
 
-export function ContactFront({id, name, abstract, avatar, onDelete, onUpdate}: ContactCardProps) {
+export function Front({id, name, abstract, avatar, onDelete, onUpdate}: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
   
   const nameRef = useRef<HTMLInputElement>(null)
   const abstractRef = useRef<HTMLTextAreaElement>(null)
-
-  const handleDeleteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onDelete && onDelete(id)
-    e.stopPropagation()
-  }
 
   const handleCancelNameChange = () => {
     setCurrentName(name)

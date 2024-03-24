@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from '@mui/material'
 import avatar1 from '../../assets/avatar1.jpg'
 import avatar10 from '../../assets/avatar10.png'
 import avatar11 from '../../assets/avatar11.png'
@@ -8,11 +9,13 @@ import avatar6 from '../../assets/avatar6.png'
 import avatar7 from '../../assets/avatar7.png'
 import avatar8 from '../../assets/avatar8.png'
 import avatar9 from '../../assets/avatar9.png'
+import { ConfirmedDeleteButton } from '../../components/button/ConfirmedDeleteButton'
 import { CardItem } from "../../components/card/Card"
 import { CardContainer } from '../../components/card/CardContainer'
+import { Back } from './Back'
 import { Contact, useContacts } from './Contact'
-import { ContactFront } from './ContactFront'
 import './Contacts.css'
+import { Front } from './Front'
 
 const avatars = [
   avatar1,
@@ -52,10 +55,27 @@ export function Contacts() {
   }
 
   const contactTemplate = (item: CardItem) => {
-    return <ContactFront {...item.data} onDelete={handleDelete} onUpdate={handleUpdate} />
+    return <Front {...item.data} onDelete={handleDelete} onUpdate={handleUpdate} />
+  }
+
+  const backTemplate = (item: CardItem) => {
+    return <Back contact={item.data} />
+  }
+
+  const menuTemplate = (item: CardItem) => {
+    return (
+      <ButtonGroup variant='contained' orientation='vertical'>
+        <ConfirmedDeleteButton onDelete={() => remove(item.data.id)} />
+        <Button>Set Image</Button>
+      </ButtonGroup>
+    )
   }
   
   return (
-      <CardContainer items={cardItems} template={contactTemplate} onReorder={handleReorder} />
+      <CardContainer items={cardItems} 
+                     cardFront={contactTemplate} 
+                     cardBack={backTemplate} 
+                     cardMenu={menuTemplate}
+                     onReorder={handleReorder} />
   )
 }
