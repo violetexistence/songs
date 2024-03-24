@@ -3,7 +3,10 @@
 
   "customizations": {
     "vscode": {
-      "extensions": ["streetsidesoftware.code-spell-checker"]
+      "extensions": [
+        "streetsidesoftware.code-spell-checker", 
+        "ms-azuretools.vscode-docker"
+      ]
     }
   },
   "forwardPorts": [3000]

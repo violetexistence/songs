@@ -5,6 +5,8 @@ import ReactCardFlip from "react-card-flip";
 import { Pastable, usePastable } from '../../features/images/usePastable';
 import hamburger from '../../assets/hamburger.svg'
 import './Card.css';
+import { Button, ButtonGroup, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 export type UniquelyIdentifiable = {
   id: string | number
@@ -59,6 +61,7 @@ export const Card = forwardRef(({
 }: CardProps, ref: any) => {
   const [isFlipped, setFlipped] = useState(defaultSide === 'back')
   const [src, handlePaste] = usePastable(item.imageUrl)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleClick = () => {
     if (!disableFlip) {
@@ -67,7 +70,7 @@ export const Card = forwardRef(({
   }
 
   const handleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-
+    setMenuOpen(v => !v)
     e.stopPropagation()
   }
 
@@ -102,9 +105,37 @@ export const Card = forwardRef(({
       <button className='menu-button' onClick={handleMenuClick}>
         <img src={hamburger} alt='menu' />
       </button>
+      { menuOpen && 
+        <menu onClick={e => e.stopPropagation()}>
+          <ButtonGroup variant='contained' orientation='vertical'>
+            <ConfirmedDeleteButton />
+            <Button>Set Image</Button>
+          </ButtonGroup>
+          <IconButton className='close-button' aria-label='Close Menu'>
+            <CloseIcon color='action' />
+          </IconButton>
+        </menu>      
+      }
     </article>
   ) 
 })
+
+function ConfirmedDeleteButton() {
+  const [showConfirm, setShowConfirm] = useState(false)
+
+  if (showConfirm) {
+    return (
+      <div className='confirm-buttons'>
+        <ButtonGroup aria-label='Confirm or Cancel'>
+          <Button color='error'>Confirm</Button>
+          <Button color='success'>Cancel</Button>
+        </ButtonGroup>
+      </div>
+    )
+  } else {
+    return <Button>Delete</Button>
+  }
+}
 
 type CardFrontProps = { 
   children: ReactNode | ReactNode[] | null
