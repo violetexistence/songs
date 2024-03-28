@@ -15,7 +15,6 @@ nav {
     margin: 0;
     cursor: pointer;
     display: flex;
-    width: 75px;
 
     > * {
       display: block;

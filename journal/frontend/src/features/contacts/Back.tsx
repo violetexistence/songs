@@ -8,7 +8,7 @@ import avatar6 from '../../assets/avatar6.png'
 import avatar7 from '../../assets/avatar7.png'
 import avatar8 from '../../assets/avatar8.png'
 import avatar9 from '../../assets/avatar9.png'
-import { Contact } from "./Contact"
+import { Person } from './api'
 
 const defaultAvatarList = [
   avatar1,
@@ -24,7 +24,7 @@ const defaultAvatarList = [
 ]
 
 export type BackProps = {
-  contact: Contact
+  contact: Person
 }
 
 export function Back({contact}:BackProps) {

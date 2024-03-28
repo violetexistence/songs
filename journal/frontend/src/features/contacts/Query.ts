@@ -1,17 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useLocalStorage } from "../storage/local";
+import { Person, createPerson, deletePerson, getPeople, updatePerson } from "./api";
 
 const PEOPLE_QUERY_KEY = 'people'
-
-export type Person = {
-  id: number,
-  name: string,
-  notes?: string,
-  avatar?: string
-}
+const PEOPLE_SORT_STORAGE_KEY = 'journal.people.sort'
 
 export function usePeople() {
-  const queryClient = useQueryClient()
-  const query = useQuery<Person[]>({ queryKey: [PEOPLE_QUERY_KEY], queryFn: getPeople })  
+  const [sortOrder, setSortOrder] = useLocalStorage<Number[]>(PEOPLE_SORT_STORAGE_KEY, [])
+  const queryClient = useQueryClient()  
+  const query = useQuery<Person[]>({ 
+    queryKey: [PEOPLE_QUERY_KEY], 
+    queryFn: getPeople
+  })  
   const createMutation = useMutation({
     mutationFn: createPerson,
     onSuccess: () => {
@@ -31,43 +31,21 @@ export function usePeople() {
     }
   })
 
+  const sortedPeople = sortPeople(query.data || [], sortOrder)
+
   return {
-    people: query.data || [],
+    people: sortedPeople,
     create: createMutation.mutate,
     remove: deleteMutation.mutate,
-    update: updateMutation.mutate
+    update: updateMutation.mutate,
+    reorder: setSortOrder
   }
 }
 
-function getPeople() {
-  return fetch('http://localhost:3031/people').then(res => res.json())
-}
-
-function createPerson(person: Omit<Person, 'id'>) {
-  return fetch('http://localhost:3031/people', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(person)
-  })
-}
-
-function deletePerson(id: number) {
-  return fetch('http://localhost:3031/people/' + id, {
-    method: 'DELETE'
-  })
-}
-
-function updatePerson(person: Person) {
-  const {id, ...other} = person;
-  return fetch('http://localhost:3031/people/' + id, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      ...other
-    })
+function sortPeople(people: Person[], userSpecifiedSort: Number[]) {
+  const map = new Map(userSpecifiedSort.map((id, index) => [id, index]))
+  const getSortableValue = (p: Person) => map.get(p.id) ?? people.length + p.id
+  return people.toSorted((prev, next) => {
+    return getSortableValue(prev) - getSortableValue(next)
   })
 }

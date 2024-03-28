@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { EditableTitle } from "../../components/editable/EditableTitle";
-import { Contact } from './Contact';
+import { Person } from "./api";
 
-export type FrontProps = Contact & {
+export type FrontProps = Person & {
   onDelete?: (id: number) => void
-  onUpdate?: (updated: Contact) => void
+  onUpdate?: (updated: Person) => void
 }
 
 export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: FrontProps) {
@@ -52,7 +52,7 @@ export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: F
         <textarea name='contact-abstract' 
                   ref={abstractRef}
                   placeholder='Enter notes (markdown ok)'
-                  value={currentAbstract}
+                  value={currentAbstract || ''}
                   onChange={e => setCurrentAbstract(e.target.value)}>
           {abstract}
         </textarea>

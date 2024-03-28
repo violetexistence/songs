@@ -12,18 +12,18 @@ import {
   rectSwappingStrategy
 } from '@dnd-kit/sortable';
 import { ReactNode } from "react";
-import { CardItem } from './Card';
+import { UniquelyIdentifiable } from './Card';
 import { SortableCard } from './SortableCard';
 
-export type CardContainerProps = {
-  items: CardItem[];
-  cardFront: (item: CardItem) => ReactNode
-  cardBack?: (item: CardItem) => ReactNode
-  cardMenu?: (item: CardItem) => ReactNode
-  onReorder?: (items: CardItem[]) => void;
+export type CardContainerProps<TItem extends UniquelyIdentifiable> = {
+  items: TItem[];
+  cardFront: (item: TItem) => ReactNode
+  cardBack?: (item: TItem) => ReactNode
+  cardMenu?: (item: TItem) => ReactNode
+  onReorder?: (items: TItem[]) => void;
 };
 
-export function CardContainer({items, cardFront, cardBack, cardMenu, onReorder}: CardContainerProps) {
+export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFront, cardBack, cardMenu, onReorder}: CardContainerProps<TItem>) {
     const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {

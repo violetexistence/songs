@@ -1,6 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { ButtonPropsVariantOverrides, IconButton } from '@mui/material';
+import FlipToBackIcon from '@mui/icons-material/FlipToBack';
+import FlipToFrontIcon from '@mui/icons-material/FlipToFront';
+import { IconButton } from '@mui/material';
 import React, { CSSProperties, ReactNode, forwardRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import './Card.css';
@@ -9,13 +11,8 @@ export type UniquelyIdentifiable = {
   id: string | number
 }
 
-export type CardItem = UniquelyIdentifiable & {
-  imageUrl: string,
-  data: any
-}
-
 export type CardProps = {
-  item: CardItem
+  item: UniquelyIdentifiable
   menu?: ReactNode
   defaultSide?: 'front' | 'back'
   style?: CSSProperties
@@ -32,20 +29,26 @@ export const Card = forwardRef(({
   const [isFlipped, setFlipped] = useState(defaultSide === 'back')
   const [menuOpen, setMenuOpen] = useState(false)
 
-  const handleClick = () => {
-    setFlipped(v => !v)
-  }
-
   const handleToggleMenuClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setMenuOpen(v => !v)
     e.stopPropagation()
   }
 
+  const handleFlipCardClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setFlipped(v => !v)
+    e.stopPropagation()
+  }
+
   return (
-    <article className='card' ref={ref} onClick={handleClick} {...props}>
+    <article className='card' ref={ref} {...props}>
       <ReactCardFlip flipDirection='horizontal' isFlipped={isFlipped}>
         {children}
       </ReactCardFlip>
+      <IconButton className='flip-card-button' onClick={handleFlipCardClick}>
+        {
+          isFlipped ? <FlipToFrontIcon /> : <FlipToBackIcon />
+        }
+      </IconButton>
       { menuOpen && 
           <menu onClick={e => e.stopPropagation()}>
             {menu}
