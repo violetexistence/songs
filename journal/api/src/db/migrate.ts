@@ -1,11 +1,7 @@
-import { Database } from 'bun:sqlite'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
 import { migrate } from 'drizzle-orm/bun-sqlite/migrator'
+import { db } from '.'
 
-async function main() {
-  const sqlite = new Database(process.env.DB_URL, { create: true })
-  const db = drizzle(sqlite)
-  
+async function main() {  
   console.log('[migrate] Running migration...')
 
   await migrate(db, { migrationsFolder: './src/db/drizzle' })
