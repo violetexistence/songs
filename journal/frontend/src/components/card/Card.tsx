@@ -1,15 +1,12 @@
 import CloseIcon from '@mui/icons-material/Close';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import FlipToBackIcon from '@mui/icons-material/FlipToBack';
 import FlipToFrontIcon from '@mui/icons-material/FlipToFront';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { IconButton } from '@mui/material';
 import React, { CSSProperties, ReactNode, forwardRef, useState } from "react";
 import ReactCardFlip from "react-card-flip";
+import { UniquelyIdentifiable } from '../../util/UniquelyIdentifiable';
 import './Card.css';
-
-export type UniquelyIdentifiable = {
-  id: string | number
-}
 
 export type CardProps = {
   item: UniquelyIdentifiable

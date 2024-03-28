@@ -1,6 +1,8 @@
 import {
   DndContext,
   DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
   PointerSensor,
   closestCenter,
   useSensor,
@@ -11,8 +13,9 @@ import {
   arraySwap,
   rectSwappingStrategy
 } from '@dnd-kit/sortable';
-import { ReactNode } from "react";
-import { UniquelyIdentifiable } from './Card';
+import ControlCameraIcon from '@mui/icons-material/ControlCamera';
+import { ReactNode, useState } from "react";
+import { UniquelyIdentifiable } from '../../util/UniquelyIdentifiable';
 import { SortableCard } from './SortableCard';
 
 export type CardContainerProps<TItem extends UniquelyIdentifiable> = {
@@ -24,7 +27,8 @@ export type CardContainerProps<TItem extends UniquelyIdentifiable> = {
 };
 
 export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFront, cardBack, cardMenu, onReorder}: CardContainerProps<TItem>) {
-    const sensors = useSensors(
+  const [isMoving, setMoving] = useState(false)
+  const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 6
@@ -32,7 +36,15 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFr
     })
   );
 
+  const handleDragStart = (event: DragStartEvent) => {
+    setMoving(true)
+  }
+
   const handleDragEnd = (event: DragEndEvent) => {
+    setMoving(false)
+  };
+
+  const handleDragOver = (event: DragEndEvent) => {
     const { active, over } = event
 
     if (onReorder && active.id !== over?.id) {
@@ -46,7 +58,7 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFr
 
   return (
     <section className='card-container'>
-      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
           <SortableContext items={items} strategy={rectSwappingStrategy}>
             {items.map(i => {
               return (
@@ -57,6 +69,14 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFr
               )
             })}
           </SortableContext>
+          <DragOverlay>
+            { isMoving ? (
+              <article className='card drag-overlay'>
+                <ControlCameraIcon />
+                <h4>Move Card</h4>
+              </article>
+            ) : null}
+          </DragOverlay>
       </DndContext>
     </section>
   );
