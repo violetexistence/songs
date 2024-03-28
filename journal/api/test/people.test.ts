@@ -1,16 +1,16 @@
 import { describe, expect, it } from 'bun:test';
 import { peopleController } from '../src/people.controller';
 
-describe('People API', () => {
+describe('People', () => {
   const api = peopleController;
   
-  it('fetches a list of people', async () => {
+  it('GET fetch all', async () => {
     const json = await api.handle(new Request('http://localhost/people')).then(res => res.json())
     
     expect(json).toBeArray()
   })
 
-  it('can create a new person', async () => {
+  it('POST creates', async () => {
     const person = await createNewPerson('test create')
 
     expect(person).not.toBeNull()
@@ -18,7 +18,7 @@ describe('People API', () => {
     expect(person.name).toBe('test create')
   })
 
-  it('can delete an existing person', async () => {
+  it('DELETE removes existing person', async () => {
     const person = await createNewPerson('test delete')
     const response = await api.handle(new Request(`http://localhost/people/${person.id}`, {
       method: 'DELETE'
@@ -27,7 +27,7 @@ describe('People API', () => {
     expect(response.status).toBe(204)
   })
 
-  it('can update an existing person', async () => {
+  it('PUT updates existing person', async () => {
     const { id, ...theRest } = await createNewPerson('test update')
     const expected = {
       ...theRest,
@@ -39,7 +39,7 @@ describe('People API', () => {
     expect(actual.name).toBe(expected.name)
   })
 
-  it('can get an existing person', async () => {
+  it('GET /:id fetches existing person', async () => {
     const expected = await createNewPerson('test get existing')
     const actual = await getPerson(expected.id)
 
