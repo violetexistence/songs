@@ -16,6 +16,7 @@ import { Back } from './Back'
 import { Contact, useContacts } from './Contact'
 import './Contacts.css'
 import { Front } from './Front'
+import { usePeople } from './Query'
 
 const avatars = [
   avatar1,
@@ -39,15 +40,17 @@ function fromContact(contact: Contact): CardItem {
 }
 
 export function Contacts() {
-  const { contacts, remove, save, saveAll } = useContacts()
-  const cardItems = contacts?.map(fromContact) || []
+  const { people, remove, update } = usePeople()
+  const { saveAll } = useContacts()
+  
+  const cardItems = people.map(fromContact)
 
   const handleDelete = (id: number) => {
     remove(id)
   }
 
   const handleUpdate = (updated: Contact) => {
-    save(updated)
+    update(updated)
   }
 
   const handleReorder = (items: CardItem[]) => {
@@ -65,7 +68,7 @@ export function Contacts() {
   const menuTemplate = (item: CardItem) => {
     return (
       <ButtonGroup variant='contained' orientation='vertical'>
-        <ConfirmedDeleteButton onDelete={() => remove(item.data.id)} />
+        <ConfirmedDeleteButton onDelete={() => handleDelete(item.data.id)} />
         <Button>Set Image</Button>
       </ButtonGroup>
     )

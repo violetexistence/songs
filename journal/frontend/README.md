@@ -1,3 +1,6 @@
 # Journal Front End
 
-Reactjs app for browser experience.
+## Start
+```bash
+npm run dev
+```

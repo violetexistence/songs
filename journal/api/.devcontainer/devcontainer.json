@@ -41,7 +41,7 @@
         "albert.tabout",
         "streetsidesoftware.code-spell-checker",
         "bierner.comment-tagged-templates",
-        "mkloubert.vscode-http-client"
+        "humao.rest-client"
       ],
       // Set *default* container specific settings.json values on container create.
       "settings": {

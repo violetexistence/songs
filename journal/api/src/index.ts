@@ -2,10 +2,12 @@ import { swagger } from '@elysiajs/swagger';
 import { ElysiaLogging } from '@otherguy/elysia-logging';
 import { Elysia } from "elysia";
 import { peopleController } from './people.controller';
+import cors from '@elysiajs/cors';
 
 const app = new Elysia()
   .use(ElysiaLogging())
   .use(swagger())
+  .use(cors())
   .onError(({ code, error }) => {
     console.error(error)
     return new Response(error.toString())

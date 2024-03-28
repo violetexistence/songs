@@ -3,7 +3,7 @@ import { useLocalStorage } from "../storage/local";
 export type Contact = {
   id: number;
   name: string;
-  abstract?: string;
+  notes?: string;
   avatar?: string;
 };
 
@@ -16,7 +16,7 @@ export function useContacts() {
     saveAll(contacts.concat({
       id: new Date().getTime(),
       name: 'New Card',
-      abstract: 'Lorem ipsum dolor sit amet.'
+      notes: 'Lorem ipsum dolor sit amet.'
     }))
   }
 

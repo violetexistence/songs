@@ -7,7 +7,7 @@ export type FrontProps = Contact & {
   onUpdate?: (updated: Contact) => void
 }
 
-export function Front({id, name, abstract, avatar, onDelete, onUpdate}: FrontProps) {
+export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
   
@@ -26,7 +26,7 @@ export function Front({id, name, abstract, avatar, onDelete, onUpdate}: FrontPro
     onUpdate && onUpdate({
       id, avatar,
       name: currentName,
-      abstract: currentAbstract
+      notes: currentAbstract
     })
   }
 
