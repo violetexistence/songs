@@ -63,8 +63,8 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFr
             {items.map(i => {
               return (
                 <SortableCard key={i.id} item={i} menu={cardMenu && cardMenu(i)}>
-                  {cardFront(i)}
-                  {cardBack && cardBack(i)}
+                  <div className='front'>{cardFront(i)}</div>
+                  <div className='back'>{cardBack && cardBack(i)}</div>
                 </SortableCard>
               )
             })}

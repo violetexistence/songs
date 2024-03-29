@@ -6,6 +6,7 @@ import './Contacts.css'
 import { Front } from './Front'
 import { usePeople } from './Query'
 import { Person } from './api'
+import { SetImageButton } from '../../components/button/SetImageButton'
 
 export function Contacts() {
   const { people, remove, update, reorder } = usePeople()
@@ -22,19 +23,26 @@ export function Contacts() {
     reorder(items.map(i => i.id))
   }
 
+  const handleImageSet = (person: Person, image: string) => {
+    update({
+      ...person,
+      avatar: image
+    })
+  }
+
   const contactTemplate = (item: Person) => {
     return <Front {...item} onDelete={handleDelete} onUpdate={handleUpdate} />
   }
 
   const backTemplate = (item: Person) => {
-    return <Back contact={item} />
+    return <Back person={item} />
   }
 
   const menuTemplate = (item: Person) => {
     return (
       <ButtonGroup variant='contained' orientation='vertical'>
         <ConfirmedDeleteButton onDelete={() => handleDelete(item.id)} />
-        <Button>Set Image</Button>
+        <SetImageButton onImageSet={image => handleImageSet(item, image)} />
       </ButtonGroup>
     )
   }

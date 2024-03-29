@@ -31,7 +31,7 @@ export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: F
   }
 
   return (
-    <div className='back'>
+    <>
       <EditableTitle type='title'
                       text={name} 
                       childRef={nameRef} 
@@ -56,7 +56,7 @@ export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: F
                   onChange={e => setCurrentAbstract(e.target.value)}>
           {abstract}
         </textarea>
-      </EditableTitle>
-    </div>
+      </EditableTitle>    
+    </>
   )
 }

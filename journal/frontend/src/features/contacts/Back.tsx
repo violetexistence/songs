@@ -24,13 +24,14 @@ const defaultAvatarList = [
 ]
 
 export type BackProps = {
-  contact: Person
+  person: Person
 }
 
-export function Back({contact}:BackProps) {
-  const defaultAvatar = defaultAvatarList[contact.id % defaultAvatarList.length]
+export function Back({person}:BackProps) {
+  const defaultAvatar = defaultAvatarList[person.id % defaultAvatarList.length]
+  const url = person.avatar ?? defaultAvatar
 
   return (
-    <div className='back' style={{backgroundImage: `url(${defaultAvatar})`}}></div>
+    <div className='avatar' style={{backgroundImage: `url(${url})`}}></div>
   )
 }
