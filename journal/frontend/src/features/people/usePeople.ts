@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Person, createPerson, deletePerson, getPeople, updatePerson } from "../../api/people";
 import { useLocalStorage } from "../storage/local";
-import { Person, createPerson, deletePerson, getPeople, updatePerson } from "./api";
 
 const PEOPLE_QUERY_KEY = 'people'
 const PEOPLE_SORT_STORAGE_KEY = 'journal.people.sort'

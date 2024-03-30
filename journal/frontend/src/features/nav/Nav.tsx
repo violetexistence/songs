@@ -1,7 +1,7 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { IconButton } from '@mui/material';
 import logo from '../../assets/logo.svg';
-import { usePeople } from '../contacts/Query';
+import { usePeople } from '../people/usePeople';
 import './Nav.css';
 
 export function Nav() {

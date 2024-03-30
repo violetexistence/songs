@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { EditableTitle } from "../../components/editable/EditableTitle";
-import { Person } from "./api";
+import { Person } from "../../api/people";
 
 export type FrontProps = Person & {
   onDelete?: (id: number) => void

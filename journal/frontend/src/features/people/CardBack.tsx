@@ -1,6 +1,7 @@
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone'
 import { Button } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
+import { Person } from '../../api/people'
 import avatar1 from '../../assets/avatar1.jpg'
 import avatar10 from '../../assets/avatar10.png'
 import avatar11 from '../../assets/avatar11.png'
@@ -13,8 +14,7 @@ import avatar8 from '../../assets/avatar8.png'
 import avatar9 from '../../assets/avatar9.png'
 import { PositionedButton } from '../../components/button/PositionedButton'
 import { ActiveDropzoneLayer, Dropzone } from '../../components/dnd/Dropzone'
-import { usePeople } from './Query'
-import { Person } from './api'
+import { usePeople } from './usePeople'
 
 const defaultAvatarList = [
   avatar1,

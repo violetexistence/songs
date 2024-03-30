@@ -26,6 +26,7 @@
     "react-card-flip": "^1.2.2",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.3",
     "vite": "^5.2.3",
     "vite-tsconfig-paths": "^4.3.2",

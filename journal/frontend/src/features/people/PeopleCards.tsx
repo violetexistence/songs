@@ -1,11 +1,9 @@
-import { ButtonGroup } from '@mui/material'
-import { ConfirmedDeleteButton } from '../../components/button/ConfirmedDeleteButton'
+import { Person } from '../../api/people'
 import { CardContainer } from '../../components/card/CardContainer'
-import { Back } from './Back'
+import { Back } from './CardBack'
 import './Contacts.css'
-import { Front } from './Front'
-import { usePeople } from './Query'
-import { Person } from './api'
+import { Front } from './CardFront'
+import { usePeople } from './usePeople'
 
 export function Contacts() {
   const { people, remove, update, reorder } = usePeople()
