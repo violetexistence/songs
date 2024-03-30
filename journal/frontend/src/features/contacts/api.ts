@@ -7,7 +7,7 @@ export type Person = {
   avatar?: string
 }
 
-const API_URL = 'http://localhost:3031'
+const API_URL = 'http://localhost:3333'
 const PEOPLE_URI = `${API_URL}/people`
 
 const PERSON_URI = (id: number) => {

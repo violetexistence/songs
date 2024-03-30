@@ -34,10 +34,36 @@
   }
 }
 
+.avatar:focus {
+  border: solid 1px red;
+}
+
 .avatar {
   width: 240px;
   height: 240px;
-  background-size: cover;
-  background-position: center;
   border-radius: 16px;
+}
+
+.delete-card {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+
+  &:hover {
+    opacity: 1;
+  };
+}
+
+.confirm-delete {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
 }
