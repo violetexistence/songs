@@ -29,20 +29,11 @@ export function Contacts() {
   const backTemplate = (item: Person) => {
     return <Back person={item} />
   }
-
-  const menuTemplate = (item: Person) => {
-    return (
-      <ButtonGroup variant='contained' orientation='vertical'>
-        <ConfirmedDeleteButton onDelete={() => handleDelete(item.id)} />
-      </ButtonGroup>
-    )
-  }
   
   return (
       <CardContainer items={people} 
                      cardFront={contactTemplate} 
-                     cardBack={backTemplate} 
-                     cardMenu={menuTemplate}
+                     cardBack={backTemplate}
                      onReorder={handleReorder} />
   )
 }

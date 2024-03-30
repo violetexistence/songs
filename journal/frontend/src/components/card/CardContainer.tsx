@@ -22,11 +22,10 @@ export type CardContainerProps<TItem extends UniquelyIdentifiable> = {
   items: TItem[];
   cardFront: (item: TItem) => ReactNode
   cardBack?: (item: TItem) => ReactNode
-  cardMenu?: (item: TItem) => ReactNode
   onReorder?: (items: TItem[]) => void;
 };
 
-export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFront, cardBack, cardMenu, onReorder}: CardContainerProps<TItem>) {
+export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFront, cardBack, onReorder}: CardContainerProps<TItem>) {
   const [isMoving, setMoving] = useState(false)
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -62,7 +61,7 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({items, cardFr
           <SortableContext items={items} strategy={rectSwappingStrategy}>
             {items.map(i => {
               return (
-                <SortableCard key={i.id} item={i} menu={cardMenu && cardMenu(i)}>
+                <SortableCard key={i.id} item={i}>
                   <div className='front'>{cardFront(i)}</div>
                   <div className='back'>{cardBack && cardBack(i)}</div>
                 </SortableCard>

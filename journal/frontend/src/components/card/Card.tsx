@@ -9,15 +9,13 @@ import { PositionedButton } from '../button/PositionedButton';
 
 export type CardProps = {
   item: UniquelyIdentifiable
-  menu?: ReactNode
   defaultSide?: 'front' | 'back'
   style?: CSSProperties
   children: [ReactNode, ReactNode]
 }
 
 export const Card = forwardRef(({
-  item, 
-  menu,
+  item,
   children, 
   defaultSide = 'back',
   ...props
