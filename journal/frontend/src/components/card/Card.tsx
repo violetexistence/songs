@@ -32,7 +32,7 @@ export const Card = forwardRef(({
       <ReactCardFlip flipDirection='horizontal' isFlipped={isFlipped}>
         {children}
       </ReactCardFlip>
-      <PositionedButton position='BottomLeft' onClick={handleFlipCardClick}>
+      <PositionedButton corner='BottomLeft' onClick={handleFlipCardClick}>
         {
           isFlipped ? <FlipToFrontIcon /> : <FlipToBackIcon />
         }

@@ -1,31 +1,43 @@
 import { IconButton } from "@mui/material";
-import { MouseEvent, PropsWithChildren, useState } from "react";
+import { MouseEvent, PropsWithChildren, useRef, useState } from "react";
+import { useHover } from "../../hooks/useHover";
 
 export type PositionedButtonProps = PropsWithChildren & {
-  position: 'TopRight' | 'TopLeft' | 'BottomLeft' | 'BottomRight'
+  corner: Corner
   className?: string
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
-export function PositionedButton({ className, onClick, position, children }: PositionedButtonProps) {
-  const [isHover, setHover] = useState(false)
-  const coords: { top?: number, left?: number, right?: number, bottom?: number  } = {}
-  position.startsWith('Top') && (coords.top = 0)
-  position.startsWith('Bottom') && (coords.bottom = 0)
-  position.endsWith('Right') && (coords.right = 0)
-  position.startsWith('Left') && (coords.left = 0)
+export function PositionedButton({ className, onClick, corner, children }: PositionedButtonProps) {
+  const [isHover, buttonRef] = useHover<HTMLButtonElement>()  
+  const coords = cornerMap[corner]
 
   return (
-    <IconButton className={className} 
-                onMouseEnter={() => setHover(true)} 
-                onMouseLeave={() => setHover(false)} 
-                onClick={onClick}                
+    <IconButton className={className}
+                onClick={onClick}
+                ref={buttonRef}          
                 style={{
+                  opacity: isHover ? 1 : 0,
                   position: 'absolute',
-                  ...coords,
-                  opacity: isHover ? 1 : 0
+                  ...coords
                 }}>
       {children}
     </IconButton>
   )
+}
+
+type Coords = {
+  top?: number,
+  right?: number,
+  bottom?: number,
+  left?: number
+}
+
+type Corner = 'TopRight' | 'TopLeft' | 'BottomLeft' | 'BottomRight'
+
+const cornerMap: Record<Corner, Coords> = {
+  'TopLeft': { top: 0, left: 0 },
+  'TopRight': { top: 0, right: 0 },
+  'BottomRight': { bottom: 0, right: 0 },
+  'BottomLeft': { bottom: 0, left: 0 }
 }

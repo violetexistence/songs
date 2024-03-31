@@ -60,7 +60,7 @@ export function Back({person}:BackProps) {
       backgroundPosition: 'top',
       backgroundSize: 'cover',
       backgroundImage: `url(${avatarUrl})`}}>
-      <PositionedButton position='TopRight' onClick={() => showConfirmDelete(true)}>
+      <PositionedButton corner='TopRight' onClick={() => showConfirmDelete(true)}>
         <DeleteTwoToneIcon />
       </PositionedButton>
       { isConfirmDelete && (
