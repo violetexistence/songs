@@ -1,16 +1,12 @@
 import { Person } from '../../api/people'
 import { CardContainer } from '../../components/card/CardContainer'
 import { Back } from './CardBack'
-import './Contacts.css'
 import { Front } from './CardFront'
+import './people.css'
 import { usePeople } from './usePeople'
 
 export function Contacts() {
-  const { people, remove, update, reorder } = usePeople()
-  
-  const handleDelete = (id: number) => {
-    remove(id)
-  }
+  const { people, update, reorder } = usePeople()
 
   const handleUpdate = (updated: Person) => {
     update(updated)
@@ -20,8 +16,8 @@ export function Contacts() {
     reorder(items.map(i => i.id))
   }
 
-  const contactTemplate = (item: Person) => {
-    return <Front {...item} onDelete={handleDelete} onUpdate={handleUpdate} />
+  const frontTemplate = (item: Person) => {
+    return <Front {...item} onUpdate={handleUpdate} />
   }
 
   const backTemplate = (item: Person) => {
@@ -30,7 +26,7 @@ export function Contacts() {
   
   return (
       <CardContainer items={people} 
-                     cardFront={contactTemplate} 
+                     cardFront={frontTemplate} 
                      cardBack={backTemplate}
                      onReorder={handleReorder} />
   )

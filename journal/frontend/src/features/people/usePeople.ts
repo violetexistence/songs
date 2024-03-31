@@ -14,20 +14,21 @@ export function usePeople() {
   })  
   const createMutation = useMutation({
     mutationFn: createPerson,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [PEOPLE_QUERY_KEY] })
+    onSuccess: (result) => {
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => old.concat(result))
     }
   })
   const deleteMutation = useMutation({
     mutationFn: deletePerson,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [PEOPLE_QUERY_KEY] })
+    onSuccess: (result, variables) => {
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => old.filter(p => p.id != variables))
     }
   })
   const updateMutation = useMutation({
     mutationFn: updatePerson,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [PEOPLE_QUERY_KEY] })
+    onSuccess: (result, variables) => {
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => 
+        old.map(p => p.id === variables.id ? {...variables}: p))
     }
   })
 

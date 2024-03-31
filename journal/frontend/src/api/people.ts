@@ -17,7 +17,7 @@ export function getPeople() {
   return axios.get(url()).then(res => res.data)
 }
 
-export function createPerson(person: Omit<Person, 'id'>) {
+export function createPerson(person: Omit<Person, 'id'>): Promise<Person> {
   return axios.post(url(), person).then(res => res.data)
 }
 

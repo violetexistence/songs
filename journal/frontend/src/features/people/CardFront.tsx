@@ -3,11 +3,10 @@ import { EditableTitle } from "../../components/editable/EditableTitle";
 import { Person } from "../../api/people";
 
 export type FrontProps = Person & {
-  onDelete?: (id: number) => void
   onUpdate?: (updated: Person) => void
 }
 
-export function Front({id, name, notes: abstract, avatar, onDelete, onUpdate}: FrontProps) {
+export function Front({id, name, notes: abstract, avatar, onUpdate}: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
   

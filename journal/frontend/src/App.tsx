@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
 import { Contacts } from './features/people/PeopleCards'
 import { Nav } from './features/nav/Nav'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const darkTheme = createTheme({
   palette: {
@@ -26,6 +27,7 @@ export function App() {
           </main>
         </div>
       </ThemeProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   )
 }
