@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useMemo, useRef, useState } from 'react'
 import { Person } from '../../api/people'
 import { CardContainer } from '../../components/card/CardContainer'
 import { Back } from './CardBack'
@@ -30,13 +30,22 @@ export function PeopleCards() {
   const backTemplate = (item: Person) => {
     return <Back person={item} />
   }
+
+  const searchPredicate = (person: Person) => {
+    return person.name.toLowerCase().includes(filter?.toLowerCase())
+  }
+
+  const filteredPeople = useMemo(
+    () => people.filter(searchPredicate), 
+    [people, filter]
+  )
   
   return (
     <section role='people'>
       <section role='filters' style={{ marginBottom: '1em' }}>
         <TextField id='search' label='Search' defaultValue='' onChange={handleFilterChange} size='small' />
       </section>
-      <CardContainer items={people.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))} 
+      <CardContainer items={filteredPeople} 
                      cardFront={frontTemplate} 
                      cardBack={backTemplate}
                      onReorder={handleReorder} />
