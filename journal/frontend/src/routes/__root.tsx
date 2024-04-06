@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { Nav } from '../features/nav/Nav'
+import './__root.css'
 
 const darkTheme = createTheme({
   palette: {
