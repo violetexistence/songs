@@ -20,7 +20,7 @@ bun test
 ## Database
 Customize location of database in:
 ```bash
-echo "DB_URL=journal.db\nAPI_PORT=3000" >> ./.env
+echo $'DB_URL=journal.db\nAPI_PORT=3333' >> ./.env
 ```
 
 Generate change scripts based on the latest schema:
