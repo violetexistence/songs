@@ -1,18 +1,17 @@
-import { swagger } from '@elysiajs/swagger';
-import { ElysiaLogging } from '@otherguy/elysia-logging';
-import { Elysia } from "elysia";
-import { peopleController } from './controllers/people';
-import cors from '@elysiajs/cors';
-import { locationsController } from './controllers/locations'; // Import the LocationController
+import cors from '@elysiajs/cors'
+import { swagger } from '@elysiajs/swagger'
+import { Elysia } from "elysia"
+import { locationsController } from './controllers/locations'
+import { peopleController } from './controllers/people'
+import { logger, logging } from './plugins/logging'
 
 const app = new Elysia()
-  .use(ElysiaLogging())
+  .use(logging)  
+  .onError(({ error }) => {
+    logger.error(error)
+  })
   .use(swagger())
   .use(cors())
-  .onError(({ code, error }) => {
-    console.error(error)
-    return new Response(error.toString())
-  })
   .use(peopleController)
   .use(locationsController)
   .listen(process.env.API_PORT || 3000)

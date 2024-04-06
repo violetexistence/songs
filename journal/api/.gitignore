@@ -42,4 +42,4 @@ package-lock.json
 **/*.bun
 
 # sqlite
-*.db
+**/*.db

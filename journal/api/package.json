@@ -19,7 +19,8 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.5",
     "drizzle-typebox": "^0.1.1",
-    "elysia": "^1.0.9"
+    "elysia": "^1.0.9",
+    "winston": "^3.13.0"
   },
   "devDependencies": {
     "@types/bun": "^1.0.11",
