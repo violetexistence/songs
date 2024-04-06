@@ -64,7 +64,6 @@ export const peopleController = new Elysia()
       return 'Cannot update this person =('
     }
 
-    set.status = 'OK'
     return updated[0]
   },{
     body: createPersonSchema,

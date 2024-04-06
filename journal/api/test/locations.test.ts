@@ -1,20 +1,12 @@
 import { describe, expect, it } from 'bun:test';
 import { locationsController } from '../src/controllers/locations';
-import { locationsSchema } from '../src/db/schema';
-import { Log } from '@otherguy/elysia-logging';
+
 
 
 describe('Locations', () => {
     const api = locationsController;
     const name = 'test create';
 
-    beforeAll(() => {
-        // Set up any necessary test data or environment
-    });
-
-    afterAll(() => {
-        // Clean up any resources used for testing
-    });
 
     it('GET: should get all locations', async () => {
         const response = await api.handle(new Request('http://localhost/locations')).then(res => res.json());
@@ -87,13 +79,6 @@ describe('Locations', () => {
         })).then(res => res.json())
     }   
 });
-function beforeAll(arg0: () => void) {
-    console.log('Function not implemented.');
-}
-
-function afterAll(arg0: () => void) {
-    console.log('Function not implemented.');
-}
 
 
 

@@ -8,7 +8,7 @@ const identityParams = t.Object({
 })
 
 export const locationsController = new Elysia()
-    .decorate('db', db)
+  .decorate('db', db)
 
 ///
 /// GET all locations
