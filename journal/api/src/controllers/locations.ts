@@ -1,11 +1,8 @@
-import { Elysia, t } from 'elysia';
-import {db} from "../db"
 import { eq } from 'drizzle-orm';
+import { Elysia, t } from 'elysia';
+import { db } from "../db";
 import { createLocationsSchema, locations, locationsSchema } from '../db/schema';
-
-const identityParams = t.Object({
-  id: t.Numeric()
-})
+import { identityParams } from '../types';
 
 export const locationsController = new Elysia()
   .decorate('db', db)

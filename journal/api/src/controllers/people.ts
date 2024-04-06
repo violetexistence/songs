@@ -2,10 +2,7 @@ import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
 import { db } from "../db";
 import { createPersonSchema, people, personSchema } from "../db/schema";
-
-const identityParams = t.Object({
-  id: t.Numeric()
-})
+import { identityParams } from "../types";
 
 export const peopleController = new Elysia()
   .decorate('db', db)
