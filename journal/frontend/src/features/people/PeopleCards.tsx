@@ -6,7 +6,7 @@ import { Front } from './CardFront'
 import './people.css'
 import { usePeople } from './usePeople'
 
-export function Contacts() {
+export function PeopleCards() {
   const { people, update, reorder } = usePeople()
   const [ filter, setFilter ] = useState('')
 
