@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { Elysia, t } from "elysia";
-import { db } from "./db";
-import { createPersonSchema, people, personSchema } from "./db/schema";
+import { db } from "../db";
+import { createPersonSchema, people, personSchema } from "../db/schema";
 
 const identityParams = t.Object({
   id: t.Numeric()

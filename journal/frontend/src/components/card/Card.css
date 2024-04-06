@@ -1,6 +1,7 @@
 body {
   --card-background-color: rgb(37, 35, 35);
-  --card-size: 240px;
+  --card-width: 243px;
+  --card-height: 340px;
 }
 
 .card {
@@ -12,8 +13,8 @@ body {
   .front, .back {
     display: flex;
     flex-direction: column;
-    height: var(--card-size);
-    width: var(--card-size);
+    height: var(--card-height);
+    width: var(--card-width);
     
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);

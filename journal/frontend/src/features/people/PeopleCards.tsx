@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from 'react'
 import { Person } from '../../api/people'
 import { CardContainer } from '../../components/card/CardContainer'
 import { Back } from './CardBack'
@@ -7,6 +8,7 @@ import { usePeople } from './usePeople'
 
 export function Contacts() {
   const { people, update, reorder } = usePeople()
+  const [ filter, setFilter ] = useState('')
 
   const handleUpdate = (updated: Person) => {
     update(updated)
@@ -14,6 +16,10 @@ export function Contacts() {
 
   const handleReorder = (items: Person[]) => {
     reorder(items.map(i => i.id))
+  }
+
+  const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFilter(e.target.value)
   }
 
   const frontTemplate = (item: Person) => {
@@ -25,9 +31,14 @@ export function Contacts() {
   }
   
   return (
-      <CardContainer items={people} 
+    <section>
+      <label>Filter: </label>
+      <input type='text' onChange={handleFilterChange} />
+      <hr />
+      <CardContainer items={people.filter(p => p.name.includes(filter))} 
                      cardFront={frontTemplate} 
                      cardBack={backTemplate}
                      onReorder={handleReorder} />
+    </section>
   )
 }

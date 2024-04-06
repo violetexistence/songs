@@ -9,4 +9,4 @@ export const people = sqliteTable('people', {
 })
 
 export const personSchema = createSelectSchema(people)
-export const createPersonSchema = createInsertSchema(people)
+export const createPersonSchema = createInsertSchema(people) 

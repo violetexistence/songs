@@ -39,8 +39,8 @@
 }
 
 .avatar {
-  width: 240px;
-  height: 240px;
+  height: var(--card-height);
+  width: var(--card-width);
   border-radius: 16px;
 }
 
