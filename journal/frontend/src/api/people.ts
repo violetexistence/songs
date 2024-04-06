@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const PEOPLE_URL = `${import.meta.env.VITE_API_LOCATION || 'http://localhost:8080'}/people`
+const PEOPLE_URL = `${import.meta.env.VITE_API_LOCATION || 'http://localhost:3000'}/people`
 
 const url = (id?: number) => {
   return id ? `${PEOPLE_URL}/${id}` : PEOPLE_URL
