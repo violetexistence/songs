@@ -14,7 +14,7 @@ const app = new Elysia()
   .use(cors())
   .use(peopleController)
   .use(locationsController)
-  .listen(process.env.API_PORT || 3000)
+  .listen(process.env.API_PORT ?? 3000)
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { locationsController } from '../src/controllers/locations';
+import { locationsController } from './locations';
 
 
 
