@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material'
 import { ChangeEvent, useState } from 'react'
 import { Person } from '../../api/people'
 import { CardContainer } from '../../components/card/CardContainer'
@@ -31,11 +32,11 @@ export function PeopleCards() {
   }
   
   return (
-    <section>
-      <label>Filter: </label>
-      <input type='text' onChange={handleFilterChange} />
-      <hr />
-      <CardContainer items={people.filter(p => p.name.includes(filter))} 
+    <section role='people'>
+      <section role='filters' style={{ marginBottom: '1em' }}>
+        <TextField id='search' label='Search' defaultValue='' onChange={handleFilterChange} size='small' />
+      </section>
+      <CardContainer items={people.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))} 
                      cardFront={frontTemplate} 
                      cardBack={backTemplate}
                      onReorder={handleReorder} />
