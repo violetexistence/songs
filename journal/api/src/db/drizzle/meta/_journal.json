@@ -8,6 +8,20 @@
       "when": 1711574887238,
       "tag": "0000_common_human_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1712423868886,
+      "tag": "0001_stiff_grandmaster",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1712424605176,
+      "tag": "0002_lethal_celestials",
+      "breakpoints": true
     }
   ]
 }
