@@ -45,7 +45,7 @@
       ],
       // Set *default* container specific settings.json values on container create.
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.defaultProfile.linux": "bash",
         "debug.internalConsoleOptions": "neverOpen",
         "editor.formatOnPaste": true,
         "editor.guides.bracketPairs": "active",
