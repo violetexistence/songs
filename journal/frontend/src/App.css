@@ -1,0 +1,10 @@
+.app {
+  min-height: 100vh;
+}
+
+main {
+  width: 100%;
+  padding-top: 1em;
+}
+
+

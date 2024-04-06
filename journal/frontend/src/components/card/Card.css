@@ -1,0 +1,130 @@
+body {
+  --card-background-color: rgb(37, 35, 35);
+  --card-width: 243px;
+  --card-height: 340px;
+}
+
+.card {
+  position: relative;
+  height: var(--card-size);
+  width: var(--card-size);
+
+  
+  .front, .back {
+    display: flex;
+    flex-direction: column;
+    height: var(--card-height);
+    width: var(--card-width);
+    
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(234, 136, 136, 0.2);
+    }
+  }
+
+  .back {
+    background-size: cover;
+    background-position: center;
+  }
+
+  &:focus .back {
+    backdrop-filter: grayscale(100%); 
+  }
+
+  img {
+    border-radius: 5px 5px 0 0;
+    height: var(--card-size);
+    width: var(--card-size);
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .toggle-menu-button {
+    background: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    opacity: 0;
+  
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+
+  .flip-card-button {
+    background: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: none;
+    opacity: 0;
+  
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+
+  menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 0;
+    margin: 0;
+
+    /* From https://css.glass */
+    background: rgba(22, 22, 22, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(22, 22, 22, 0.3);
+
+    .close-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+.drag-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  /* From https://css.glass */
+  background: rgba(22, 22, 22, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(22, 22, 22, 0.3);
+
+  img {
+    width: 70px;
+  }
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
