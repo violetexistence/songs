@@ -41,8 +41,10 @@ export default [
       //...reactPlugin.configs.recommended.rules,
       //...reactPlugin.configs['jsx-runtime'].rules,
       ...ts.configs['eslint-recommended'].rules,
-      //...ts.configs['recommended'].rules,
+      ...ts.configs['recommended'].rules,
       //...ts.configs['recommended-requiring-type-checking'].rules,
+      "no-unused-vars": "off",
+      "no-undef": "warn"
     },
   },
 ];
