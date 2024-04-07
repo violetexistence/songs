@@ -44,7 +44,8 @@ export default [
       ...ts.configs['recommended'].rules,
       //...ts.configs['recommended-requiring-type-checking'].rules,
       "no-unused-vars": "off",
-      "no-undef": "warn"
+      "no-undef": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     },
   },
 ];
