@@ -1,12 +1,9 @@
 import { describe, expect, it } from 'bun:test';
-import { locationsController } from '../src/controllers/locations';
-
-
+import { locationsController } from './locations';
 
 describe('Locations', () => {
     const api = locationsController;
     const name = 'test create';
-
 
     it('GET: should get all locations', async () => {
         const response = await api.handle(new Request('http://localhost/locations')).then(res => res.json());
@@ -79,6 +76,3 @@ describe('Locations', () => {
         })).then(res => res.json())
     }   
 });
-
-
-

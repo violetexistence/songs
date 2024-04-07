@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test';
-import { peopleController } from '../src/controllers/people';
+import { peopleController } from './people';
 
 describe('People', () => {
   const api = peopleController;
