@@ -16,13 +16,14 @@ describe('People', () => {
     expect(person).not.toBeNull()
     expect(person.id).toBeNumber()
     expect(person.name).toBe('test create')
+
+    await deletePerson(person.id)
   })
 
   it('DELETE removes existing person', async () => {
     const person = await createNewPerson('test delete')
-    const response = await api.handle(new Request(`http://localhost/people/${person.id}`, {
-      method: 'DELETE'
-    }))
+    const response = await deletePerson(person.id)
+
 
     expect(response.status).toBe(204)
   })
@@ -37,6 +38,8 @@ describe('People', () => {
 
     expect(actual.id).toBe(id)
     expect(actual.name).toBe(expected.name)
+
+    await deletePerson(id)
   })
 
   it('GET /:id fetches existing person', async () => {
@@ -44,6 +47,8 @@ describe('People', () => {
     const actual = await getPerson(expected.id)
 
     expect(actual.name).toBe(expected.name)
+
+    await deletePerson(expected.id)
   })
 
   const createNewPerson = async (name: string) => {    
@@ -72,5 +77,11 @@ describe('People', () => {
     return await api.handle(new Request(`http://localhost/people/${id}`, {
       method: 'GET'
     })).then(res => res.json())
+  }
+
+  const deletePerson = async (id: number) => {
+    return await api.handle(new Request(`http://localhost/people/${id}`, {
+      method: 'DELETE'
+    }))
   }
 })
