@@ -1,41 +1,34 @@
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
-import { IconButton } from '@mui/material';
-import { useNavigate } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import logo from '../../assets/logo.svg';
-import { usePeople } from '../people/usePeople';
-import { useLocations } from '../locations/useLocations';
 import './Nav.css';
+import { useNavActions } from './useNavActions';
+
+const pages = [{
+  icon: <PersonIcon />,
+  to: '/people'
+}, {
+  icon: <LocationOnIcon />,
+  to: '/locations'
+}]
 
 export function Nav() {
-  const createPerson = usePeople().create
-  const createLocation = useLocations().create
-  const navigate = useNavigate({ from: '/' })
-
-  const isOnPeoplePage = window.location.pathname === '/people';
-  const isOnLocationPage = window.location.pathname === '/locations';
-
+  const { navActions: actions } = useNavActions()
 
   return (
     <nav>
-      <a href='/'><img src={logo} alt='Journal Home' className='app-logo' /></a>
-      {isOnPeoplePage && (
-      <IconButton onClick={() => createPerson({ name: 'New Person' })}>
-        <AddCircleOutlineIcon />
-      </IconButton>
-      )}
-      {isOnLocationPage && (
-      <IconButton onClick={() => createLocation({ name: 'New Location' })}>
-        <AddCircleOutlineIcon />
-      </IconButton>
-      )}
-      <IconButton onClick={() => navigate({ to: '/people' })}>
-        <PersonIcon />
-      </IconButton>
-      <IconButton onClick={() => navigate({ to: '/locations' })}>
-        <LocationOnIcon />
-      </IconButton>
+      <Link to='/'>
+        <img src={logo} alt='Journal Home' className='app-logo' />
+      </Link>
+      { actions }
+      { pages.map(p => {
+        return (
+          <Link to={p.to} style={{color: 'gray'}} activeProps={{style: { color: 'white' }}}>
+            { p.icon }
+          </Link>
+        )
+      })}
     </nav>
   )
 }

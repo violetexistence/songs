@@ -6,6 +6,7 @@ import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { Nav } from '../features/nav/Nav'
 import './__root.css'
+import { NavActionsProvider } from '../features/nav/useNavActions'
 
 const darkTheme = createTheme({
   palette: {
@@ -20,12 +21,14 @@ export const Route = createRootRoute({
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <div className="app">
-          <Nav />
-          <main>
-            <Outlet />
-          </main>
-        </div>
+        <NavActionsProvider>
+          <div className="app">
+            <Nav />
+            <main>
+              <Outlet />
+            </main>
+          </div>
+        </NavActionsProvider>
       </ThemeProvider>
       <ReactQueryDevtools />
       <TanStackRouterDevtools />

@@ -1,15 +1,18 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { CardContainer } from '../../components/card/CardContainer'
 import { Back } from './CardBack'
 import { Front } from './CardFront'
 import './locations.css'
 import { Location } from '../../api/locations'
 import { useLocations } from './useLocations'
+import { useNavActions } from '../nav/useNavActions'
+import { AddButton } from '../../components/button/AddButton'
 
 export function LocationCards() {  
-  const { locations, update, reorder } = useLocations()
+  const { locations, update, reorder, create } = useLocations()
   const [ filter, setFilter ] = useState('')
+  const { setNavActions: setActions } = useNavActions()
 
   const handleUpdate = (updated: Location) => {
     update(updated)
@@ -39,6 +42,10 @@ export function LocationCards() {
     () => locations.filter(searchPredicate), 
     [locations, filter]
   )
+
+  useLayoutEffect(() => {
+    setActions(<AddButton onClick={() => create({ name: 'New Location'})} />)
+  },[])
   
   return (
     <section role='locations'>
