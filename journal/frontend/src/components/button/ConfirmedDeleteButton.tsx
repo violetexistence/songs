@@ -15,7 +15,12 @@ export function ConfirmedDeleteButton({ onDelete }: ConfirmedDeleteButtonProps) 
   },[showConfirm])
 
   if (showConfirm) {
-    return <Button color='error' onClick={onDelete}>Confirm Delete</Button>
+    return (
+      <>
+        <Button color='error' onClick={onDelete}>Confirm Delete</Button>
+        {setTimeout(() => setShowConfirm(false), 5000)}
+      </>
+    )
   } else {
     return <Button onClick={() => setShowConfirm(true)}>Delete</Button>
   }

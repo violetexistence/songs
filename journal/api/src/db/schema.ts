@@ -12,7 +12,7 @@ export const locations = sqliteTable('locations', {
   id: integer('id').primaryKey({autoIncrement: true}),
   name: text('name').notNull(),
   notes: text('notes'),
-  avatar: text('image')
+  image: text('image')
 } as const)
 
 export const personSchema = createSelectSchema(people)

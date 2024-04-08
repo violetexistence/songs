@@ -21,6 +21,10 @@ nav {
       width: 100%;
     }
   }
+
+  a:visited {
+    color: unset;
+  }
 }
 
 nav::after {

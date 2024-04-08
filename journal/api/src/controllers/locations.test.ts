@@ -16,6 +16,9 @@ describe('Locations', () => {
 
         expect(actual.id).toBeNumber;
         expect(actual.name).toBe(name);
+
+        const response = await deleteLocation(actual.id);
+        expect(response.status).toBe(204);
     });
 
     it('DELETE: should delete a location', async () => {
@@ -38,6 +41,9 @@ describe('Locations', () => {
 
         expect(actual.id).toBe(id);
         expect(actual.name).toBe(expected.name);
+
+        const response = await deleteLocation(actual.id);
+        expect(response.status).toBe(204);
     });
 
     it('GET /:id:should get a location by ID', async () => {
@@ -46,6 +52,9 @@ describe('Locations', () => {
 
         expect(actual.id).toBe(expected.id);
         expect(actual.name).toBe(expected.name);
+
+        const response = await deleteLocation(actual.id);
+        expect(response.status).toBe(204);
     });
 
     const createNewLocation = async (name: string) => {
@@ -70,9 +79,15 @@ describe('Locations', () => {
         })).then(res => res.json())
     }
 
-    const getPerson = async (id: number) => {     
-        return await api.handle(new Request(`http://localhost/locations/${id}`, {
-            method: 'GET'
-        })).then(res => res.json())
-    }   
-});
+        const getPerson = async (id: number) => {     
+            return await api.handle(new Request(`http://localhost/locations/${id}`, {
+                method: 'GET'
+            })).then(res => res.json())
+        }   
+
+        const deleteLocation = async (id: number) => {
+            return await api.handle(new Request(`http://localhost/locations/${id}`, {
+                method: 'DELETE'
+            }));
+        }
+    });

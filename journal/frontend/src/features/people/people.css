@@ -38,6 +38,10 @@
   border: solid 1px red;
 }
 
+.image:focus {
+  border: solid 1px green;
+}
+
 .avatar {
   height: var(--card-height);
   width: var(--card-width);
