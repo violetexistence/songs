@@ -14,7 +14,7 @@ const pages = [{
 }]
 
 export function Nav() {
-  const { navActions: actions } = useNavActions()
+  const actions = useNavActions()
 
   return (
     <nav>
@@ -22,10 +22,10 @@ export function Nav() {
         <img src={logo} alt='Journal Home' className='app-logo' />
       </Link>
       { actions }
-      { pages.map(p => {
+      { pages.map((page, index) => {
         return (
-          <Link to={p.to} style={{color: 'gray'}} activeProps={{style: { color: 'white' }}}>
-            { p.icon }
+          <Link key={index} to={page.to} style={{color: 'gray'}} activeProps={{style: { color: 'white' }}}>
+            { page.icon }
           </Link>
         )
       })}

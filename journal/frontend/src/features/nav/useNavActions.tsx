@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode, createContext, useContext, useState } from "react";
+import { PropsWithChildren, ReactNode, createContext, useContext, useLayoutEffect, useState } from "react";
 
 export type NavActionsContext = {
   navActions: ReactNode,
@@ -22,4 +22,16 @@ export function NavActionsProvider({ children }: PropsWithChildren) {
   )
 }
 
-export const useNavActions = () => useContext(context)
+export function useNavActions(actions?: ReactNode) {
+  const { navActions, setNavActions } = useContext(context)
+
+  useLayoutEffect(() => {
+    actions && setNavActions(actions)
+
+    return () => {
+      setNavActions(<></>)
+    }
+  },[])
+
+  return navActions
+}

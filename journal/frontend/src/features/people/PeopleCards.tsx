@@ -1,19 +1,19 @@
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { TextField } from '@mui/material'
-import { ChangeEvent, useLayoutEffect, useMemo, useState } from 'react'
+import { ChangeEvent, useMemo, useState } from 'react'
 import { Person } from '../../api/people'
+import { AddButton } from '../../components/button/AddButton'
 import { CardContainer } from '../../components/card/CardContainer'
 import { useNavActions } from '../nav/useNavActions'
 import { Back } from './CardBack'
 import { Front } from './CardFront'
 import './people.css'
 import { usePeople } from './usePeople'
-import { AddButton } from '../../components/button/AddButton'
 
 export function PeopleCards() {
   const { people, update, reorder, create } = usePeople()
   const [ filter, setFilter ] = useState('')
-  const nav = useNavActions()
+  
+  useNavActions(<AddButton onClick={() => create({ name: 'New Person' })} />)  
 
   const handleUpdate = (updated: Person) => {
     update(updated)
@@ -44,10 +44,6 @@ export function PeopleCards() {
     [people, filter]
   )
 
-  useLayoutEffect(() => {
-    console.log('set nav action for people')
-    nav.setNavActions(<AddButton onClick={() => create({ name: 'New Person' })} />)
-  },[])
   
   return (
     <section role='people'>
