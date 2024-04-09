@@ -8,3 +8,6 @@ main {
 }
 
 
+input:focus {
+  background-color: blueviolet;
+}
