@@ -12,7 +12,7 @@ const PEOPLE_QUERY_KEY = 'people'
 const PEOPLE_SORT_STORAGE_KEY = 'journal.people.sort'
 
 export function usePeople() {
-  const [sortOrder, setSortOrder] = useLocalStorage<Number[]>(
+  const [sortOrder, setSortOrder] = useLocalStorage<number[]>(
     PEOPLE_SORT_STORAGE_KEY,
     []
   )
@@ -57,7 +57,7 @@ export function usePeople() {
   }
 }
 
-function sortPeople(people: Person[], userSpecifiedSort: Number[]) {
+function sortPeople(people: Person[], userSpecifiedSort: number[]) {
   const map = new Map(userSpecifiedSort.map((id, index) => [id, index]))
   const getSortableValue = (p: Person) => map.get(p.id) ?? people.length + p.id
   return people.toSorted((prev, next) => {

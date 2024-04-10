@@ -2,11 +2,10 @@ import {
   DndContext,
   DragEndEvent,
   DragOverlay,
-  DragStartEvent,
   PointerSensor,
   closestCenter,
   useSensor,
-  useSensors,
+  useSensors
 } from '@dnd-kit/core'
 import {
   SortableContext,
@@ -40,11 +39,11 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({
     })
   )
 
-  const handleDragStart = (event: DragStartEvent) => {
+  const handleDragStart = () => {
     setMoving(true)
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = () => {
     setMoving(false)
   }
 

@@ -1,11 +1,10 @@
 import FlipToBackIcon from '@mui/icons-material/FlipToBack'
 import FlipToFrontIcon from '@mui/icons-material/FlipToFront'
-import { IconButton } from '@mui/material'
-import React, { CSSProperties, ReactNode, forwardRef, useState } from 'react'
+import React, { CSSProperties, ForwardedRef, ReactNode, forwardRef, useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
 import { UniquelyIdentifiable } from '../../util/UniquelyIdentifiable'
-import './Card.css'
 import { PositionedButton } from '../button/PositionedButton'
+import './Card.css'
 
 export type CardProps = {
   item: UniquelyIdentifiable
@@ -14,8 +13,8 @@ export type CardProps = {
   children: [ReactNode, ReactNode]
 }
 
-export const Card = forwardRef(
-  ({ item, children, defaultSide = 'back', ...props }: CardProps, ref: any) => {
+export const Card = forwardRef<HTMLElement, CardProps>(
+  ({ children, defaultSide = 'back', ...props }: CardProps, ref: ForwardedRef<HTMLElement>) => {
     const [isFlipped, setFlipped] = useState(defaultSide === 'back')
 
     const handleFlipCardClick = (e: React.MouseEvent<HTMLButtonElement>) => {

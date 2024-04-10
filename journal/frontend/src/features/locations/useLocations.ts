@@ -12,7 +12,7 @@ const LOCATIONS_QUERY_KEY = 'locations'
 const LOCATIONS_SORT_STORAGE_KEY = 'journal.locations.sort'
 
 export function useLocations() {
-  const [sortOrder, setSortOrder] = useLocalStorage<Number[]>(
+  const [sortOrder, setSortOrder] = useLocalStorage<number[]>(
     LOCATIONS_SORT_STORAGE_KEY,
     []
   )
@@ -56,7 +56,7 @@ export function useLocations() {
     reorder: setSortOrder,
   }
 
-  function sortLocations(locations: Location[], userSpecifiedSort: Number[]) {
+  function sortLocations(locations: Location[], userSpecifiedSort: number[]) {
     const map = new Map(userSpecifiedSort.map((id, index) => [id, index]))
     const getSortableValue = (p: Location) =>
       map.get(p.id) ?? locations.length + p.id

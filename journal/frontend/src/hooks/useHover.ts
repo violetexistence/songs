@@ -4,7 +4,7 @@ import { useEventListener } from './useEventListener'
 export function useHover<TElement extends HTMLElement>(): [
   boolean,
   RefObject<TElement>,
-] {
+  ] {
   const elementRef = useRef<TElement>(null)
   const [hovered, setHovered] = useState(false)
 

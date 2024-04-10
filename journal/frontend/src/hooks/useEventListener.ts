@@ -1,11 +1,5 @@
 import { RefObject, useEffect, useRef } from 'react'
 
-type Add = typeof window.addEventListener
-type Remove = typeof window.removeEventListener
-type HasEvents = {
-  addEventListener: Add
-  removeEventListener: Remove
-}
 type EventTypes = keyof WindowEventMap & keyof HTMLElementEventMap // TODO: & (typeof MediaQueryListEventMap)
 
 export function useEventListener<T extends HTMLElement>(

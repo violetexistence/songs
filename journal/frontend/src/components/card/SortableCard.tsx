@@ -3,7 +3,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { PropsWithChildren } from 'react'
 import { Card, CardProps } from './Card'
 
-export function SortableCard<T>({
+export function SortableCard({
   item,
   children,
   ...props

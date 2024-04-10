@@ -7,7 +7,7 @@ type LocalStorageSetStateValue<TValue> =
   | TValue
   | ((prevState: TValue | null) => TValue)
 type LocalStorageReturnValue<TValue> = [
-  TValue,
+  TValue | null,
   (v: LocalStorageSetStateValue<TValue>) => void,
   () => void,
 ]
@@ -16,13 +16,13 @@ export function useLocalStorage<TValue = string>(
   key: string,
   defaultValue: TValue
 ): LocalStorageReturnValue<TValue> {
-  const [localState, updateLocalState] = useState<TValue>(() => {
+  const [localState, updateLocalState] = useState<TValue | null>(() => {
     const existingStoredValue = getFromStore<TValue>(key)
     return existingStoredValue ?? defaultValue
   })
 
   const onLocalStorageChange = useCallback(
-    (value: any | null) => {
+    (value: TValue | null) => {
       updateLocalState(value)
     },
     [updateLocalState, key]
@@ -33,7 +33,7 @@ export function useLocalStorage<TValue = string>(
       return
     }
 
-    const cleanupHandlers = receiveStorageChangeEvents(key, (value) =>
+    const cleanupHandlers = receiveStorageChangeEvents<TValue>(key, (value) =>
       onLocalStorageChange(value)
     )
 
