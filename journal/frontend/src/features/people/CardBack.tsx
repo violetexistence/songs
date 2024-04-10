@@ -40,7 +40,7 @@ export function Back({ person }: BackProps) {
       ...person,
       avatar: image,
     })
-  }, [])
+  }, [person, update])
   const [isConfirmDelete, showConfirmDelete] = useState(false)
 
   const defaultAvatar = defaultAvatarList[person.id % defaultAvatarList.length]

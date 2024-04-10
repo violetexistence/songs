@@ -31,13 +31,22 @@ import { isBrowser } from '../browser/detection'
 
 export const LOCAL_STORAGE_CHANGE_EVENT_NAME = 'onLocalStorageChange'
 
-export interface LocalStorageEventPayload<TValue> {
+export interface LocalStorageEventPayload {
   key: string
-  value: TValue
+  value: string | null
 }
 
-export function isTypeOfLocalStorageChanged(evt: Event): boolean {
-  return !!evt && evt.type === LOCAL_STORAGE_CHANGE_EVENT_NAME
+type LocalStorageChangeEvent = {
+  type: 'onLocalStorageChange'
+  detail: LocalStorageEventPayload
+}
+
+function isLocalStorageChangeEvent(event: unknown): event is LocalStorageChangeEvent {
+  return (event as LocalStorageChangeEvent).detail !== undefined
+}
+
+function isStorageEvent(e: unknown): e is StorageEvent {
+  return (e as StorageEvent).newValue !== undefined
 }
 
 export function sendStorageChangeEvent<TValue>(detail: {
@@ -55,14 +64,16 @@ export function sendStorageChangeEvent<TValue>(detail: {
   )
 }
 
-export function receiveStorageChangeEvents<TValue>(
+export function receiveStorageChangeEvents(
   key: string,
-  handler: (value: TValue | null) => void
+  handler: (value: string | null) => void
 ): () => void {
-  const handlerWrapper = (e: any | StorageEvent) => {
-    if (isTypeOfLocalStorageChanged(e)) {
-      e.detail.key === key && handler(e.detail?.value)
-    } else {
+  const handlerWrapper = (e: unknown) => {
+    if (isLocalStorageChangeEvent(e)) {      
+      e.detail.key === key && handler(e.detail.value)
+    }
+    
+    if (isStorageEvent(e)) {
       e.key === key && handler(e.newValue)
     }
   }

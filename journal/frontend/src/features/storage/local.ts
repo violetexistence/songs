@@ -2,12 +2,13 @@ import { useCallback, useEffect, useState } from 'react'
 import { isBrowser } from '../browser/detection'
 import { receiveStorageChangeEvents } from './events'
 import { deleteFromStore, getFromStore, writeToStore } from './store'
+import { tryParse } from '../json/parsing'
 
 type LocalStorageSetStateValue<TValue> =
   | TValue
-  | ((prevState: TValue | null) => TValue)
+  | ((prevState: TValue) => TValue)
 type LocalStorageReturnValue<TValue> = [
-  TValue | null,
+  TValue,
   (v: LocalStorageSetStateValue<TValue>) => void,
   () => void,
 ]
@@ -25,7 +26,7 @@ export function useLocalStorage<TValue = string>(
     (value: TValue | null) => {
       updateLocalState(value)
     },
-    [updateLocalState, key]
+    [updateLocalState]
   )
 
   useEffect(() => {
@@ -33,9 +34,13 @@ export function useLocalStorage<TValue = string>(
       return
     }
 
-    const cleanupHandlers = receiveStorageChangeEvents<TValue>(key, (value) =>
-      onLocalStorageChange(value)
-    )
+    const cleanupHandlers = receiveStorageChangeEvents(key, (value) => {
+      const parsed = tryParse<TValue>(value)
+      if (parsed === value) {
+        throw new Error(`Failed to JSON.parse(${value}) found in localStorage`)
+      }
+      onLocalStorageChange(parsed as TValue)
+    })
 
     if (getFromStore(key) === null && defaultValue !== null) {
       writeToStore(key, defaultValue)
@@ -47,15 +52,15 @@ export function useLocalStorage<TValue = string>(
   const writeState = useCallback(
     (value: LocalStorageSetStateValue<TValue>) => {
       if (value instanceof Function) {
-        writeToStore(key, value(localState))
+        writeToStore(key, value(localState ?? defaultValue))
       } else {
         writeToStore(key, value)
       }
     },
-    [key, localState]
+    [key, localState, defaultValue]
   )
 
   const deleteState = useCallback(() => deleteFromStore(key), [key])
 
-  return [localState, writeState, deleteState]
+  return [localState ?? defaultValue, writeState, deleteState]
 }

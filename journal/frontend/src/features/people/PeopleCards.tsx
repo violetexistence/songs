@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, useMemo, useState } from 'react'
+import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Person } from '../../api/people'
 import { AddButton } from '../../components/button/AddButton'
 import { CardContainer } from '../../components/card/CardContainer'
@@ -13,7 +13,9 @@ export function PeopleCards() {
   const { people, update, reorder, create } = usePeople()
   const [filter, setFilter] = useState('')
 
-  useNavActions(<AddButton onClick={() => create({ name: 'New Person' })} />)
+  const navActions = useMemo(() => <AddButton onClick={() => create({ name: 'New Person' })} />, [create])
+
+  useNavActions(navActions)
 
   const handleUpdate = (updated: Person) => {
     update(updated)
@@ -35,13 +37,13 @@ export function PeopleCards() {
     return <Back person={item} />
   }
 
-  const searchPredicate = (person: Person) => {
+  const searchPredicate = useCallback((person: Person) => {
     return person.name.toLowerCase().includes(filter?.toLowerCase())
-  }
+  }, [filter])
 
   const filteredPeople = useMemo(
     () => people.filter(searchPredicate),
-    [people, filter]
+    [people, searchPredicate]
   )
 
   return (

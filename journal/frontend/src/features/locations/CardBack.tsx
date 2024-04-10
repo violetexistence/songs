@@ -18,7 +18,7 @@ export function Back({ location }: BackProps) {
       ...location,
       image: backImage,
     })
-  }, [])
+  }, [location, update])
   const [isConfirmDelete, showConfirmDelete] = useState(false)
 
   const imageUrl = location.image ?? dragonAgeWorld

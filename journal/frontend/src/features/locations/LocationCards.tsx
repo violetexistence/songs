@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, useMemo, useState } from 'react'
+import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Location } from '../../api/locations'
 import { AddButton } from '../../components/button/AddButton'
 import { CardContainer } from '../../components/card/CardContainer'
@@ -13,7 +13,9 @@ export function LocationCards() {
   const { locations, update, reorder, create } = useLocations()
   const [filter, setFilter] = useState('')
 
-  useNavActions(<AddButton onClick={() => create({ name: 'New Location' })} />)
+  const navActions = useMemo(() => <AddButton onClick={() => create({ name: 'New Location' })} />, [create])
+
+  useNavActions(navActions)
 
   const handleUpdate = (updated: Location) => {
     update(updated)
@@ -35,13 +37,13 @@ export function LocationCards() {
     return <Back location={item} />
   }
 
-  const searchPredicate = (location: Location) => {
+  const searchPredicate = useCallback((location: Location) => {
     return location.name.toLowerCase().includes(filter?.toLowerCase())
-  }
+  }, [filter])
 
   const filteredLocations = useMemo(
     () => locations.filter(searchPredicate),
-    [locations, filter]
+    [locations, searchPredicate]
   )
 
   return (

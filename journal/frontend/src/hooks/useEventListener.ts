@@ -5,8 +5,7 @@ type EventTypes = keyof WindowEventMap & keyof HTMLElementEventMap // TODO: & (t
 export function useEventListener<T extends HTMLElement>(
   eventType: EventTypes,
   callback: EventListener,
-  element?: RefObject<T>,
-  options?: boolean | AddEventListenerOptions
+  element?: RefObject<T>
 ) {
   const callbackRef = useRef(callback)
 
@@ -23,10 +22,10 @@ export function useEventListener<T extends HTMLElement>(
       callbackRef.current(event)
     }
 
-    targetElement.addEventListener(eventType, listener, options)
+    targetElement.addEventListener(eventType, listener)
 
     return () => {
-      targetElement.removeEventListener(eventType, listener, options)
+      targetElement.removeEventListener(eventType, listener)
     }
   }, [eventType, element])
 }
