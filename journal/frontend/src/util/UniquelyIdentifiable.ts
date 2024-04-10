@@ -1,4 +1,3 @@
-
 export type UniquelyIdentifiable = {
-  id: string | number;
-};
+  id: string | number
+}

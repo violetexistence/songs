@@ -1,18 +1,27 @@
-import { ClipboardEvent, DragEvent, HTMLAttributes, useEffect, useRef, useState } from "react";
+import {
+  ClipboardEvent,
+  DragEvent,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 export type useImageDropzoneProps = {
   onDrop?: (imageUrl: string) => void
 }
 
-export function useImageDropzone<TRoot extends HTMLElement>({onDrop}: useImageDropzoneProps) {
+export function useImageDropzone<TRoot extends HTMLElement>({
+  onDrop,
+}: useImageDropzoneProps) {
   const [isZoneActive, setZoneActive] = useState(false)
   const [isSelected, setSelected] = useState(false)
   const rootRef = useRef<TRoot>(null)
 
   useEffect(() => {
-   if (isSelected) {
-    rootRef.current?.focus()
-   } 
+    if (isSelected) {
+      rootRef.current?.focus()
+    }
   })
 
   const handlePaste = (e: ClipboardEvent<TRoot>) => {
@@ -66,13 +75,13 @@ export function useImageDropzone<TRoot extends HTMLElement>({onDrop}: useImageDr
       onDrop: handleDrop,
       onDragOver: handleDragOver,
       onDragLeave: handleDragLeave,
-      onPaste: handlePaste
+      onPaste: handlePaste,
     }
   }
 
   const processItems = (items: DataTransferItem[]) => {
-    items.forEach(i => {
-      switch(i.type) {
+    items.forEach((i) => {
+      switch (i.type) {
         case 'text/html':
           i.getAsString(processHtml)
           break
@@ -93,31 +102,31 @@ export function useImageDropzone<TRoot extends HTMLElement>({onDrop}: useImageDr
   const processHtml = (html: string) => {
     const container = document.createElement('div')
     container.innerHTML = html
-    
+
     const image = container.querySelector('img')
     image && setImage(image.src)
   }
 
   const processUrlList = (list: string) => {
     const lines = list.split(/\r?\n|\r|\n/g)
-    const urls = lines.filter(l => l && !l.startsWith('#'))
+    const urls = lines.filter((l) => l && !l.startsWith('#'))
     const last = urls.pop()
     last && setImage(last)
   }
 
   const processFiles = (files: File[]) => {
-    const image = files.filter(f => f.type.includes('image')).at(0)
+    const image = files.filter((f) => f.type.includes('image')).at(0)
     if (image) {
       const reader = new FileReader()
       reader.addEventListener('load', () => {
         setImage(reader.result as string)
       })
-      reader.readAsDataURL(image)     
+      reader.readAsDataURL(image)
     }
   }
 
   return {
     getRootProps,
-    isZoneActive    
+    isZoneActive,
   }
 }

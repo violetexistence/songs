@@ -1,9 +1,9 @@
-import { isBrowser } from "../browser/detection"
+import { isBrowser } from '../browser/detection'
 
 /**
  * CustomEvent polyfill derived from: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
  */
-(() => {
+;(() => {
   if (!isBrowser()) {
     return
   }
@@ -12,9 +12,17 @@ import { isBrowser } from "../browser/detection"
     return
   }
 
-  function CustomEvent<T>(typeArg: string, params: CustomEventInit<T> = { bubbles: false, cancelable: false }): CustomEvent<T> {
+  function CustomEvent<T>(
+    typeArg: string,
+    params: CustomEventInit<T> = { bubbles: false, cancelable: false }
+  ): CustomEvent<T> {
     const evt = document.createEvent('CustomEvent')
-    evt.initCustomEvent(typeArg, params?.bubbles ?? false, params?.cancelable ?? false, params?.detail)
+    evt.initCustomEvent(
+      typeArg,
+      params?.bubbles ?? false,
+      params?.cancelable ?? false,
+      params?.detail
+    )
     return evt
   }
 
@@ -28,23 +36,29 @@ export interface LocalStorageEventPayload<TValue> {
   value: TValue
 }
 
-export function isTypeOfLocalStorageChanged(evt: Event): boolean {  
+export function isTypeOfLocalStorageChanged(evt: Event): boolean {
   return !!evt && evt.type === LOCAL_STORAGE_CHANGE_EVENT_NAME
 }
 
-export function sendStorageChangeEvent<TValue>(detail: {key: string, value: TValue | null}) {
+export function sendStorageChangeEvent<TValue>(detail: {
+  key: string
+  value: TValue | null
+}) {
   if (!isBrowser()) {
     return
   }
 
   window.dispatchEvent(
     new CustomEvent(LOCAL_STORAGE_CHANGE_EVENT_NAME, {
-      detail
+      detail,
     })
   )
 }
 
-export function receiveStorageChangeEvents<TValue>(key: string, handler: (value: TValue | null) => void): () => void {
+export function receiveStorageChangeEvents<TValue>(
+  key: string,
+  handler: (value: TValue | null) => void
+): () => void {
   const handlerWrapper = (e: any | StorageEvent) => {
     if (isTypeOfLocalStorageChanged(e)) {
       e.detail.key === key && handler(e.detail?.value)

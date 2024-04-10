@@ -1,5 +1,8 @@
 .editable-title {
-  input, textarea, h4, p {
+  input,
+  textarea,
+  h4,
+  p {
     font-family: var(--font-fam);
     font-size: medium;
     font-weight: bold;
@@ -15,7 +18,8 @@
     width: 100%;
   }
 
-  textarea, p {
+  textarea,
+  p {
     font-family: var(--font-fam);
     font-size: small;
     font-weight: normal;
@@ -56,7 +60,7 @@
 
   &:hover {
     opacity: 1;
-  };
+  }
 }
 
 .confirm-delete {

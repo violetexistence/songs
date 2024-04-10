@@ -10,8 +10,8 @@ import { NavActionsProvider } from '../features/nav/useNavActions'
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark'
-  }
+    mode: 'dark',
+  },
 })
 
 const queryClient = new QueryClient()

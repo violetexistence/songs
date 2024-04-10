@@ -11,16 +11,16 @@ import { usePeople } from './usePeople'
 
 export function PeopleCards() {
   const { people, update, reorder, create } = usePeople()
-  const [ filter, setFilter ] = useState('')
-  
-  useNavActions(<AddButton onClick={() => create({ name: 'New Person' })} />)  
+  const [filter, setFilter] = useState('')
+
+  useNavActions(<AddButton onClick={() => create({ name: 'New Person' })} />)
 
   const handleUpdate = (updated: Person) => {
     update(updated)
   }
 
   const handleReorder = (items: Person[]) => {
-    reorder(items.map(i => i.id))
+    reorder(items.map((i) => i.id))
   }
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,20 +40,27 @@ export function PeopleCards() {
   }
 
   const filteredPeople = useMemo(
-    () => people.filter(searchPredicate), 
+    () => people.filter(searchPredicate),
     [people, filter]
   )
 
-  
   return (
-    <section role='people'>
-      <section role='filters' style={{ marginBottom: '1em' }}>
-        <TextField id='search' label='Search' defaultValue='' onChange={handleFilterChange} size='small' />
+    <section role="people">
+      <section role="filters" style={{ marginBottom: '1em' }}>
+        <TextField
+          id="search"
+          label="Search"
+          defaultValue=""
+          onChange={handleFilterChange}
+          size="small"
+        />
       </section>
-      <CardContainer items={filteredPeople} 
-                     cardFront={frontTemplate} 
-                     cardBack={backTemplate}
-                     onReorder={handleReorder} />
+      <CardContainer
+        items={filteredPeople}
+        cardFront={frontTemplate}
+        cardBack={backTemplate}
+        onReorder={handleReorder}
+      />
     </section>
   )
 }

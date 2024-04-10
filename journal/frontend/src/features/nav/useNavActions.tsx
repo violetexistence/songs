@@ -1,25 +1,28 @@
-import { PropsWithChildren, ReactNode, createContext, useContext, useLayoutEffect, useState } from "react";
+import {
+  PropsWithChildren,
+  ReactNode,
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useState,
+} from 'react'
 
 export type NavActionsContext = {
-  navActions: ReactNode,
+  navActions: ReactNode
   setNavActions: (value: ReactNode) => void
 }
 
 const initialActions = <></>
 const context = createContext<NavActionsContext>({
   navActions: initialActions,
-  setNavActions: () => {}
+  setNavActions: () => {},
 })
 const Provider = context.Provider
 
 export function NavActionsProvider({ children }: PropsWithChildren) {
   const [navActions, setNavActions] = useState<ReactNode>(initialActions)
 
-  return (
-    <Provider value={{ navActions, setNavActions }}>
-      { children }
-    </Provider>
-  )
+  return <Provider value={{ navActions, setNavActions }}>{children}</Provider>
 }
 
 export function useNavActions(actions?: ReactNode) {
@@ -31,7 +34,7 @@ export function useNavActions(actions?: ReactNode) {
     return () => {
       setNavActions(<></>)
     }
-  },[])
+  }, [])
 
   return navActions
 }

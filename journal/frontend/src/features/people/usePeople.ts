@@ -1,35 +1,49 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Person, createPerson, deletePerson, getPeople, updatePerson } from "../../api/people";
-import { useLocalStorage } from "../storage/local";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import {
+  Person,
+  createPerson,
+  deletePerson,
+  getPeople,
+  updatePerson,
+} from '../../api/people'
+import { useLocalStorage } from '../storage/local'
 
 const PEOPLE_QUERY_KEY = 'people'
 const PEOPLE_SORT_STORAGE_KEY = 'journal.people.sort'
 
 export function usePeople() {
-  const [sortOrder, setSortOrder] = useLocalStorage<Number[]>(PEOPLE_SORT_STORAGE_KEY, [])
-  const queryClient = useQueryClient()  
-  const query = useQuery<Person[]>({ 
-    queryKey: [PEOPLE_QUERY_KEY], 
-    queryFn: getPeople
-  })  
+  const [sortOrder, setSortOrder] = useLocalStorage<Number[]>(
+    PEOPLE_SORT_STORAGE_KEY,
+    []
+  )
+  const queryClient = useQueryClient()
+  const query = useQuery<Person[]>({
+    queryKey: [PEOPLE_QUERY_KEY],
+    queryFn: getPeople,
+  })
   const createMutation = useMutation({
     mutationFn: createPerson,
     onSuccess: (result) => {
-      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => old.concat(result))
-    }
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
+        old.concat(result)
+      )
+    },
   })
   const deleteMutation = useMutation({
     mutationFn: deletePerson,
     onSuccess: (result, variables) => {
-      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => old.filter(p => p.id != variables))
-    }
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
+        old.filter((p) => p.id != variables)
+      )
+    },
   })
   const updateMutation = useMutation({
     mutationFn: updatePerson,
     onSuccess: (result, variables) => {
-      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) => 
-        old.map(p => p.id === variables.id ? {...variables}: p))
-    }
+      queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
+        old.map((p) => (p.id === variables.id ? { ...variables } : p))
+      )
+    },
   })
 
   const sortedPeople = sortPeople(query.data || [], sortOrder)
@@ -39,7 +53,7 @@ export function usePeople() {
     create: createMutation.mutate,
     remove: deleteMutation.mutate,
     update: updateMutation.mutate,
-    reorder: setSortOrder
+    reorder: setSortOrder,
   }
 }
 

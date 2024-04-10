@@ -9,18 +9,18 @@ import { Front } from './CardFront'
 import './locations.css'
 import { useLocations } from './useLocations'
 
-export function LocationCards() {  
+export function LocationCards() {
   const { locations, update, reorder, create } = useLocations()
-  const [ filter, setFilter ] = useState('')
-  
-  useNavActions(<AddButton onClick={() => create({ name: 'New Location'})} />)
+  const [filter, setFilter] = useState('')
+
+  useNavActions(<AddButton onClick={() => create({ name: 'New Location' })} />)
 
   const handleUpdate = (updated: Location) => {
     update(updated)
   }
 
   const handleReorder = (items: Location[]) => {
-    reorder(items.map(i => i.id))
+    reorder(items.map((i) => i.id))
   }
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,19 +40,27 @@ export function LocationCards() {
   }
 
   const filteredLocations = useMemo(
-    () => locations.filter(searchPredicate), 
+    () => locations.filter(searchPredicate),
     [locations, filter]
   )
-  
+
   return (
-    <section role='locations'>
-      <section role='filters' style={{ marginBottom: '1em' }}>
-        <TextField id='search' label='Search' defaultValue='' onChange={handleFilterChange} size='small' />
+    <section role="locations">
+      <section role="filters" style={{ marginBottom: '1em' }}>
+        <TextField
+          id="search"
+          label="Search"
+          defaultValue=""
+          onChange={handleFilterChange}
+          size="small"
+        />
       </section>
-      <CardContainer items={filteredLocations} 
-                     cardFront={frontTemplate} 
-                     cardBack={backTemplate}
-                     onReorder={handleReorder} />
+      <CardContainer
+        items={filteredLocations}
+        cardFront={frontTemplate}
+        cardBack={backTemplate}
+        onReorder={handleReorder}
+      />
     </section>
   )
 }

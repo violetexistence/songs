@@ -9,13 +9,13 @@ body {
   height: var(--card-size);
   width: var(--card-size);
 
-  
-  .front, .back {
+  .front,
+  .back {
     display: flex;
     flex-direction: column;
     height: var(--card-height);
     width: var(--card-width);
-    
+
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -23,7 +23,7 @@ body {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
+
     &:hover {
       box-shadow: 0 8px 16px 0 rgba(234, 136, 136, 0.2);
     }
@@ -35,7 +35,7 @@ body {
   }
 
   &:focus .back {
-    backdrop-filter: grayscale(100%); 
+    backdrop-filter: grayscale(100%);
   }
 
   img {
@@ -53,7 +53,7 @@ body {
     top: 0;
     border: none;
     opacity: 0;
-  
+
     &:hover {
       opacity: 0.6;
       cursor: pointer;
@@ -67,7 +67,7 @@ body {
     bottom: 0;
     border: none;
     opacity: 0;
-  
+
     &:hover {
       opacity: 0.6;
       cursor: pointer;
