@@ -13,12 +13,15 @@ export type BackProps = {
 
 export function Back({ location }: BackProps) {
   const { update, remove } = useLocations()
-  const onDrop = useCallback((backImage: string) => {
-    update({
-      ...location,
-      image: backImage,
-    })
-  }, [location, update])
+  const onDrop = useCallback(
+    (backImage: string) => {
+      update({
+        ...location,
+        image: backImage,
+      })
+    },
+    [location, update]
+  )
   const [isConfirmDelete, showConfirmDelete] = useState(false)
 
   const imageUrl = location.image ?? dragonAgeWorld

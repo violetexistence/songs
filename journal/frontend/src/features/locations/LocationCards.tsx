@@ -13,7 +13,10 @@ export function LocationCards() {
   const { locations, update, reorder, create } = useLocations()
   const [filter, setFilter] = useState('')
 
-  const navActions = useMemo(() => <AddButton onClick={() => create({ name: 'New Location' })} />, [create])
+  const navActions = useMemo(
+    () => <AddButton onClick={() => create({ name: 'New Location' })} />,
+    [create]
+  )
 
   useNavActions(navActions)
 
@@ -37,9 +40,12 @@ export function LocationCards() {
     return <Back location={item} />
   }
 
-  const searchPredicate = useCallback((location: Location) => {
-    return location.name.toLowerCase().includes(filter?.toLowerCase())
-  }, [filter])
+  const searchPredicate = useCallback(
+    (location: Location) => {
+      return location.name.toLowerCase().includes(filter?.toLowerCase())
+    },
+    [filter]
+  )
 
   const filteredLocations = useMemo(
     () => locations.filter(searchPredicate),

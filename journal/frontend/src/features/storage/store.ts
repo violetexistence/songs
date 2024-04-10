@@ -84,9 +84,9 @@ export function deleteFromStore(key: string) {
 }
 
 export function getFromStore<TValue>(key: string): TValue | null {
-  const rawValue = store.getItem(key)  
+  const rawValue = store.getItem(key)
   const value = tryParse(rawValue)
-  
+
   if (value === rawValue) {
     throw new Error(`Error in JSON.parse() for string value: ${rawValue}.`)
   }

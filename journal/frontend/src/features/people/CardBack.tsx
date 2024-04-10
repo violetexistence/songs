@@ -35,12 +35,15 @@ export type BackProps = {
 
 export function Back({ person }: BackProps) {
   const { update, remove } = usePeople()
-  const onDrop = useCallback((image: string) => {
-    update({
-      ...person,
-      avatar: image,
-    })
-  }, [person, update])
+  const onDrop = useCallback(
+    (image: string) => {
+      update({
+        ...person,
+        avatar: image,
+      })
+    },
+    [person, update]
+  )
   const [isConfirmDelete, showConfirmDelete] = useState(false)
 
   const defaultAvatar = defaultAvatarList[person.id % defaultAvatarList.length]

@@ -30,8 +30,8 @@ export function useImageDropzone<TRoot extends HTMLElement>({
     if (e.clipboardData?.items) {
       processItems([...e.clipboardData.items])
       return
-    } 
-    
+    }
+
     if (e.clipboardData?.files) {
       processFiles([...e.clipboardData.files])
       return
@@ -85,19 +85,19 @@ export function useImageDropzone<TRoot extends HTMLElement>({
   const processItems = (items: DataTransferItem[]) => {
     items.forEach((i) => {
       switch (i.type) {
-      case 'text/html':
-        i.getAsString(processHtml)
-        break
-      case 'text/uri-list':
-        i.getAsString(processUrlList)
-        break
-      default:
-        if (i.type.startsWith('image')) {
-          const file = i.getAsFile()
-          file && processFiles([file])
-        } else {
-          // TODO: add proper logging console.log('Cannot process type: ' + i.type)
-        }
+        case 'text/html':
+          i.getAsString(processHtml)
+          break
+        case 'text/uri-list':
+          i.getAsString(processUrlList)
+          break
+        default:
+          if (i.type.startsWith('image')) {
+            const file = i.getAsFile()
+            file && processFiles([file])
+          } else {
+            // TODO: add proper logging console.log('Cannot process type: ' + i.type)
+          }
       }
     })
   }

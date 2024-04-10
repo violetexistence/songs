@@ -13,7 +13,10 @@ export function PeopleCards() {
   const { people, update, reorder, create } = usePeople()
   const [filter, setFilter] = useState('')
 
-  const navActions = useMemo(() => <AddButton onClick={() => create({ name: 'New Person' })} />, [create])
+  const navActions = useMemo(
+    () => <AddButton onClick={() => create({ name: 'New Person' })} />,
+    [create]
+  )
 
   useNavActions(navActions)
 
@@ -37,9 +40,12 @@ export function PeopleCards() {
     return <Back person={item} />
   }
 
-  const searchPredicate = useCallback((person: Person) => {
-    return person.name.toLowerCase().includes(filter?.toLowerCase())
-  }, [filter])
+  const searchPredicate = useCallback(
+    (person: Person) => {
+      return person.name.toLowerCase().includes(filter?.toLowerCase())
+    },
+    [filter]
+  )
 
   const filteredPeople = useMemo(
     () => people.filter(searchPredicate),

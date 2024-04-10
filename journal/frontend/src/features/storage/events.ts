@@ -41,7 +41,9 @@ type LocalStorageChangeEvent = {
   detail: LocalStorageEventPayload
 }
 
-function isLocalStorageChangeEvent(event: unknown): event is LocalStorageChangeEvent {
+function isLocalStorageChangeEvent(
+  event: unknown
+): event is LocalStorageChangeEvent {
   return (event as LocalStorageChangeEvent).detail !== undefined
 }
 
@@ -69,10 +71,10 @@ export function receiveStorageChangeEvents(
   handler: (value: string | null) => void
 ): () => void {
   const handlerWrapper = (e: unknown) => {
-    if (isLocalStorageChangeEvent(e)) {      
+    if (isLocalStorageChangeEvent(e)) {
       e.detail.key === key && handler(e.detail.value)
     }
-    
+
     if (isStorageEvent(e)) {
       e.key === key && handler(e.newValue)
     }
