@@ -1,14 +1,19 @@
 # Journal Front End
 
 ## Start
-```bash
+
+```
 npm install && npm run dev
 ```
-## Run ESLint
-``` bash
-npx eslint .
+
+## Linting
+
 ```
+npm run lint && npm run format
+```
+
 ## Customize Environment
+
 ```
 echo $'VITE_PORT=8888\nVITE_API_LOCATION=http://localhost:3333' >> ./.env
 ```
