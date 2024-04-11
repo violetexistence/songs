@@ -134,3 +134,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+journal/webapi/.vs/
+journal/webapi/bin/
+journal/webapi/obj/
+journal/webapi/webapi.csproj.user
+journal/webapi/webapi.sln
