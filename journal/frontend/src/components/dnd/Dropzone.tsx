@@ -1,6 +1,11 @@
-import { CSSProperties, PropsWithChildren, createContext, useContext } from "react"
-import { useImageDropzone } from "../../features/dnd/useImageDropzone"
-import { GlassOverlay } from "../overlay/GlassOverlay"
+import {
+  CSSProperties,
+  PropsWithChildren,
+  createContext,
+  useContext,
+} from 'react'
+import { useImageDropzone } from '../../features/dnd/useImageDropzone'
+import { GlassOverlay } from '../overlay/GlassOverlay'
 
 type DropzoneContextProps = {
   active: boolean
@@ -19,7 +24,7 @@ export function Dropzone({ onDrop, children, ...props }: DropzoneProps) {
   return (
     <DropzoneContext.Provider value={{ active: isZoneActive }}>
       <div {...getRootProps()} {...props}>
-        { children }
+        {children}
       </div>
     </DropzoneContext.Provider>
   )
@@ -29,12 +34,11 @@ export type ActiveDropzoneLayerProps = PropsWithChildren & {
   style?: CSSProperties
 }
 
-export function ActiveDropzoneLayer({ children, style }: ActiveDropzoneLayerProps) {
+export function ActiveDropzoneLayer({
+  children,
+  style,
+}: ActiveDropzoneLayerProps) {
   const { active } = useContext(DropzoneContext)
-  
-  return active && (
-    <GlassOverlay style={style}>
-      {children}
-    </GlassOverlay>
-  )
+
+  return active && <GlassOverlay style={style}>{children}</GlassOverlay>
 }

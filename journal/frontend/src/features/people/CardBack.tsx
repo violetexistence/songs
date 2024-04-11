@@ -18,37 +18,40 @@ import { usePeople } from './usePeople'
 
 const defaultAvatarList = [
   avatar1,
-  avatar5, 
-  avatar6, 
-  avatar7, 
-  avatar8, 
-  avatar9, 
+  avatar5,
+  avatar6,
+  avatar7,
+  avatar8,
+  avatar9,
   avatar10,
   avatar11,
   avatar12,
-  avatar13
+  avatar13,
 ]
 
 export type BackProps = {
   person: Person
 }
 
-export function Back({person}:BackProps) {
+export function Back({ person }: BackProps) {
   const { update, remove } = usePeople()
-  const onDrop = useCallback((image: string) => {
-    update({
-      ...person,
-      avatar: image
-    })
-  }, [])
-  const [ isConfirmDelete, showConfirmDelete ] = useState(false)
-  
+  const onDrop = useCallback(
+    (image: string) => {
+      update({
+        ...person,
+        avatar: image,
+      })
+    },
+    [person, update]
+  )
+  const [isConfirmDelete, showConfirmDelete] = useState(false)
+
   const defaultAvatar = defaultAvatarList[person.id % defaultAvatarList.length]
   const avatarUrl = person.avatar ?? defaultAvatar
 
   useEffect(() => {
     setTimeout(() => showConfirmDelete(false), 3000)
-  },[isConfirmDelete])
+  }, [isConfirmDelete])
 
   const handleConfirmDeleteClick = () => {
     remove(person.id)
@@ -56,18 +59,32 @@ export function Back({person}:BackProps) {
   }
 
   return (
-    <Dropzone className='avatar' onDrop={onDrop} style={{
-      backgroundPosition: 'top',
-      backgroundSize: 'cover',
-      backgroundImage: `url(${avatarUrl})`}}>
-      <PositionedButton corner='TopRight' onClick={() => showConfirmDelete(true)}>
+    <Dropzone
+      className="avatar"
+      onDrop={onDrop}
+      style={{
+        backgroundPosition: 'top',
+        backgroundSize: 'cover',
+        backgroundImage: `url(${avatarUrl})`,
+      }}
+    >
+      <PositionedButton
+        corner="TopRight"
+        onClick={() => showConfirmDelete(true)}
+      >
         <DeleteTwoToneIcon />
       </PositionedButton>
-      { isConfirmDelete && (
-        <div className='confirm-delete'>
-          <Button variant='contained' color='error' onClick={handleConfirmDeleteClick}>Confirm Delete</Button>
+      {isConfirmDelete && (
+        <div className="confirm-delete">
+          <Button
+            variant="contained"
+            color="error"
+            onClick={handleConfirmDeleteClick}
+          >
+            Confirm Delete
+          </Button>
         </div>
-      )}      
+      )}
       <ActiveDropzoneLayer>Drop to Update Avatar</ActiveDropzoneLayer>
     </Dropzone>
   )

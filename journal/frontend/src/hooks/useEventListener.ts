@@ -1,33 +1,31 @@
-import { RefObject, useEffect, useRef } from "react"
+import { RefObject, useEffect, useRef } from 'react'
 
-type Add = typeof window.addEventListener
-type Remove = typeof window.removeEventListener
-type HasEvents = {
-  addEventListener: Add
-  removeEventListener: Remove
-}
-type EventTypes = (keyof WindowEventMap) & (keyof HTMLElementEventMap) // TODO: & (typeof MediaQueryListEventMap)
+type EventTypes = keyof WindowEventMap & keyof HTMLElementEventMap // TODO: & (typeof MediaQueryListEventMap)
 
-export function useEventListener<T extends HTMLElement>(eventType: EventTypes, callback: EventListener, element?: RefObject<T>, options?: boolean | AddEventListenerOptions) {
+export function useEventListener<T extends HTMLElement>(
+  eventType: EventTypes,
+  callback: EventListener,
+  element?: RefObject<T>
+) {
   const callbackRef = useRef(callback)
 
   useEffect(() => {
     callbackRef.current = callback
-  },[callback])
+  }, [callback])
 
   useEffect(() => {
     const targetElement: T | Window = element?.current ?? window
-    
+
     if (!(targetElement && targetElement.addEventListener)) return
 
-    const listener: typeof callback = event => {
+    const listener: typeof callback = (event) => {
       callbackRef.current(event)
     }
 
-    targetElement.addEventListener(eventType, listener, options)
+    targetElement.addEventListener(eventType, listener)
 
     return () => {
-      targetElement.removeEventListener(eventType, listener, options)
+      targetElement.removeEventListener(eventType, listener)
     }
-  },[eventType, element])
+  }, [eventType, element])
 }

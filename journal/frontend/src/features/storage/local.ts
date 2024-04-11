@@ -1,27 +1,46 @@
-import { useCallback, useEffect, useState } from "react"
-import { isBrowser } from "../browser/detection"
-import { receiveStorageChangeEvents } from "./events"
-import { deleteFromStore, getFromStore, writeToStore } from "./store"
+import { useCallback, useEffect, useState } from 'react'
+import { isBrowser } from '../browser/detection'
+import { receiveStorageChangeEvents } from './events'
+import { deleteFromStore, getFromStore, writeToStore } from './store'
+import { tryParse } from '../json/parsing'
 
-type LocalStorageSetStateValue<TValue> = TValue | ((prevState: TValue | null) => TValue)
-type LocalStorageReturnValue<TValue> = [TValue, (v: LocalStorageSetStateValue<TValue>) => void, () => void];
+type LocalStorageSetStateValue<TValue> =
+  | TValue
+  | ((prevState: TValue) => TValue)
+type LocalStorageReturnValue<TValue> = [
+  TValue,
+  (v: LocalStorageSetStateValue<TValue>) => void,
+  () => void,
+]
 
-export function useLocalStorage<TValue = string>(key: string, defaultValue: TValue): LocalStorageReturnValue<TValue> {
-  const [localState, updateLocalState] = useState<TValue>(() => {
+export function useLocalStorage<TValue = string>(
+  key: string,
+  defaultValue: TValue
+): LocalStorageReturnValue<TValue> {
+  const [localState, updateLocalState] = useState<TValue | null>(() => {
     const existingStoredValue = getFromStore<TValue>(key)
     return existingStoredValue ?? defaultValue
   })
 
-  const onLocalStorageChange = useCallback((value: any | null) => {
-    updateLocalState(value)
-  }, [updateLocalState, key])
+  const onLocalStorageChange = useCallback(
+    (value: TValue | null) => {
+      updateLocalState(value)
+    },
+    [updateLocalState]
+  )
 
   useEffect(() => {
     if (!isBrowser()) {
       return
     }
 
-    const cleanupHandlers = receiveStorageChangeEvents(key, value => onLocalStorageChange(value))
+    const cleanupHandlers = receiveStorageChangeEvents(key, (value) => {
+      const parsed = tryParse<TValue>(value)
+      if (parsed === value) {
+        throw new Error(`Failed to JSON.parse(${value}) found in localStorage`)
+      }
+      onLocalStorageChange(parsed as TValue)
+    })
 
     if (getFromStore(key) === null && defaultValue !== null) {
       writeToStore(key, defaultValue)
@@ -30,15 +49,18 @@ export function useLocalStorage<TValue = string>(key: string, defaultValue: TVal
     return cleanupHandlers
   }, [key, defaultValue, onLocalStorageChange])
 
-  const writeState = useCallback((value: LocalStorageSetStateValue<TValue>) => {
-    if (value instanceof Function) {
-      writeToStore(key, value(localState))
-    } else {
-      writeToStore(key, value)
-    }
-  },[key, localState])
+  const writeState = useCallback(
+    (value: LocalStorageSetStateValue<TValue>) => {
+      if (value instanceof Function) {
+        writeToStore(key, value(localState ?? defaultValue))
+      } else {
+        writeToStore(key, value)
+      }
+    },
+    [key, localState, defaultValue]
+  )
 
   const deleteState = useCallback(() => deleteFromStore(key), [key])
 
-  return [localState, writeState, deleteState]
+  return [localState ?? defaultValue, writeState, deleteState]
 }

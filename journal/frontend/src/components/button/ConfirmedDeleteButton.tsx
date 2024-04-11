@@ -1,23 +1,27 @@
-import { Button } from "@mui/material"
-import { useEffect, useState } from "react"
+import { Button } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 export type ConfirmedDeleteButtonProps = {
   onDelete?: () => void
 }
 
-export function ConfirmedDeleteButton({ onDelete }: ConfirmedDeleteButtonProps) {
+export function ConfirmedDeleteButton({
+  onDelete,
+}: ConfirmedDeleteButtonProps) {
   const [showConfirm, setShowConfirm] = useState(false)
 
   useEffect(() => {
     if (showConfirm) {
       setTimeout(() => setShowConfirm(false), 3000)
     }
-  },[showConfirm])
+  }, [showConfirm])
 
   if (showConfirm) {
     return (
       <>
-        <Button color='error' onClick={onDelete}>Confirm Delete</Button>
+        <Button color="error" onClick={onDelete}>
+          Confirm Delete
+        </Button>
         {setTimeout(() => setShowConfirm(false), 5000)}
       </>
     )

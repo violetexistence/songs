@@ -1,14 +1,14 @@
-import Markdown from 'react-markdown';
+import Markdown from 'react-markdown'
 import './EditableTitle.css'
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from 'react'
 
 export type EditableTitleProps = {
-  children: ReactNode | ReactNode[],
+  children: ReactNode | ReactNode[]
   type: 'title' | 'markdown'
-  text?: string,
-  placeholder?: string,
-  childRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>,
-  onSubmit?: () => void,
+  text?: string
+  placeholder?: string
+  childRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement>
+  onSubmit?: () => void
   onCancel?: () => void
 }
 
@@ -28,7 +28,7 @@ export function EditableTitle({
     if (isEditing && childRef && childRef.current) {
       childRef.current.focus()
       childRef.current.select()
-    }    
+    }
     isEditing && childRef && childRef.current?.focus()
   }, [isEditing, childRef])
 
@@ -51,22 +51,22 @@ export function EditableTitle({
   }
 
   const handleBlur = () => {
-    onCancel && onCancel();
+    onCancel && onCancel()
     setEditing(false)
   }
 
   return (
-    <section className='editable-title' {...props} onClick={handleClick}>
-      { isEditing ? (
+    <section className="editable-title" {...props} onClick={handleClick}>
+      {isEditing ? (
         <div onBlur={handleBlur} onKeyDown={handleKeyDown}>
           {children}
         </div>
       ) : (
         <div>
           {type === 'title' ? (
-            <h4>{ text || placeholder }</h4>
+            <h4>{text || placeholder}</h4>
           ) : (
-            <Markdown>{ text || placeholder }</Markdown>
+            <Markdown>{text || placeholder}</Markdown>
           )}
         </div>
       )}
