@@ -17,12 +17,19 @@ namespace webapi {
             if (app.Environment.IsDevelopment()) {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();
+            }
+            else {
+                app.UseExceptionHandler("/error");
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
+            app.MapGet("error", () => Results.Problem("An error occurred.")); //Minimal API for error handling
+
+            //app.MapGet("/error/test", () => { throw new Exception("test"); });
 
             app.MapControllers();
 

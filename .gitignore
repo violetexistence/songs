@@ -139,3 +139,4 @@ journal/webapi/bin/
 journal/webapi/obj/
 journal/webapi/webapi.csproj.user
 journal/webapi/webapi.sln
+journal/dal/obj/
