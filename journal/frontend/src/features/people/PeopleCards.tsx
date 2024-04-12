@@ -2,12 +2,30 @@ import { TextField } from '@mui/material'
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Person } from '../../api/types'
 import { AddButton } from '../../components/button/AddButton'
+import { CardBack } from '../../components/card/CardBack'
 import { CardContainer } from '../../components/card/CardContainer'
 import { useNavActions } from '../nav/useNavActions'
-import { Back } from './CardBack'
 import { Front } from './CardFront'
+import { chooseDefaultAvatar } from '../avatars/avatars'
 import './people.css'
 import { usePeople } from './usePeople'
+
+function PeopleCardBack(person: Person) {
+  const { update, remove } = usePeople()
+  const avatar = person.avatar ?? chooseDefaultAvatar(person.id, 'people')
+  return (
+    <CardBack
+      image={avatar}
+      onDelete={() => remove(person.id)}
+      onImageChange={(image) => {
+        update({
+          ...person,
+          avatar: image,
+        })
+      }}
+    />
+  )
+}
 
 export function PeopleCards() {
   const { people, update, reorder, create } = usePeople()
@@ -36,10 +54,6 @@ export function PeopleCards() {
     return <Front {...item} onUpdate={handleUpdate} />
   }
 
-  const backTemplate = (item: Person) => {
-    return <Back person={item} />
-  }
-
   const searchPredicate = useCallback(
     (person: Person) => {
       return person.name.toLowerCase().includes(filter?.toLowerCase())
@@ -66,7 +80,7 @@ export function PeopleCards() {
       <CardContainer
         items={filteredPeople}
         cardFront={frontTemplate}
-        cardBack={backTemplate}
+        cardBack={PeopleCardBack}
         onReorder={handleReorder}
       />
     </section>
