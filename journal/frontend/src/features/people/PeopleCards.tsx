@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material'
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
-import { Person } from '../../api/people'
+import { Person } from '../../api/types'
 import { AddButton } from '../../components/button/AddButton'
 import { CardContainer } from '../../components/card/CardContainer'
 import { useNavActions } from '../nav/useNavActions'

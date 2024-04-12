@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { EditableTitle } from '../../components/editable/EditableTitle'
-import { Person } from '../../api/people'
+import { Person } from '../../api/types'
 
 export type FrontProps = Person & {
   onUpdate?: (updated: Person) => void

@@ -1,5 +1,5 @@
 import { isBrowser } from '../browser/detection'
-import { tryParse } from '../json/parsing'
+import { parseJSON } from '../json/parsing'
 import { sendStorageChangeEvent } from './events'
 
 export function localStorageAvailable() {
@@ -83,13 +83,12 @@ export function deleteFromStore(key: string) {
   sendStorageChangeEvent({ key, value: null })
 }
 
-export function getFromStore<TValue>(key: string): TValue | null {
-  const rawValue = store.getItem(key)
-  const value = tryParse(rawValue)
+export function getFromStore<TValue>(key: string, seedValue?: TValue) {
+  const value: TValue | null = parseJSON(store.getItem(key))
 
-  if (value === rawValue) {
-    throw new Error(`Error in JSON.parse() for string value: ${rawValue}.`)
+  if (value === null && seedValue !== undefined) {
+    writeToStore(key, seedValue)
   }
 
-  return value as TValue
+  return value ?? seedValue ?? null
 }

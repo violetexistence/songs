@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { isBrowser } from '../browser/detection'
 import { receiveStorageChangeEvents } from './events'
 import { deleteFromStore, getFromStore, writeToStore } from './store'
-import { tryParse } from '../json/parsing'
+import { parseJSON } from '../json/parsing'
 
 type LocalStorageSetStateValue<TValue> =
   | TValue
@@ -35,11 +35,7 @@ export function useLocalStorage<TValue = string>(
     }
 
     const cleanupHandlers = receiveStorageChangeEvents(key, (value) => {
-      const parsed = tryParse<TValue>(value)
-      if (parsed === value) {
-        throw new Error(`Failed to JSON.parse(${value}) found in localStorage`)
-      }
-      onLocalStorageChange(parsed as TValue)
+      onLocalStorageChange(parseJSON(value))
     })
 
     if (getFromStore(key) === null && defaultValue !== null) {

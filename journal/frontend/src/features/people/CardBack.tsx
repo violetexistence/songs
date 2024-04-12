@@ -1,7 +1,7 @@
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone'
 import { Button } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
-import { Person } from '../../api/people'
+import { Person } from '../../api/types'
 import avatar1 from '../../assets/avatar1.jpg'
 import avatar10 from '../../assets/avatar10.png'
 import avatar11 from '../../assets/avatar11.png'

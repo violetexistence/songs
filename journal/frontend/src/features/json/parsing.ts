@@ -1,11 +1,7 @@
-export function tryParse<T>(value: string | null): T | string | null {
+export function parseJSON<T>(value: string | null): T | null {
   if (value === '' || value === null) {
     return null
   }
 
-  try {
-    return JSON.parse(value)
-  } catch {
-    return value
-  }
+  return JSON.parse(value)
 }
