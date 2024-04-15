@@ -65,7 +65,7 @@ export function LocationCards() {
       </section>
       <CardContainer
         items={filteredLocations}
-        cardFront={frontTemplate}
+        CardFrontComponent={frontTemplate}
         cardBack={backTemplate}
         onReorder={handleReorder}
       />
