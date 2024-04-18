@@ -1,5 +1,5 @@
-import { IconButton } from "@mui/material"
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { IconButton } from '@mui/material'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export type AddButtonProps = {
   onClick: () => void

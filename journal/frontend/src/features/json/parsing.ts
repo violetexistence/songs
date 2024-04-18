@@ -1,4 +1,4 @@
-export function tryParse(value: string | null): any | null {
+export function tryParse<T>(value: string | null): T | string | null {
   if (value === '' || value === null) {
     return null
   }
