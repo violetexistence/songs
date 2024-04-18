@@ -145,3 +145,8 @@ journal/api/csharp/bin/
 journal/api/csharp/obj/
 journal/api/csharp/webapi.csproj.user
 journal/api/csharp/webapi.sln
+journal/api/csharp_dal/obj/
+journal/api/.env
+journal/api/elysia/journal.db
+
+
