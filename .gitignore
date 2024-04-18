@@ -140,3 +140,8 @@ journal/webapi/obj/
 journal/webapi/webapi.csproj.user
 journal/webapi/webapi.sln
 journal/dal/obj/
+journal/api/csharp/.vs/
+journal/api/csharp/bin/
+journal/api/csharp/obj/
+journal/api/csharp/webapi.csproj.user
+journal/api/csharp/webapi.sln

@@ -1,6 +1,0 @@
-@webapi_HostAddress = http://localhost:5207
-
-GET {{webapi_HostAddress}}/People/GetAll
-Accept: application/json
-
-###
