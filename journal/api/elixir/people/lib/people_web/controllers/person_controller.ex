@@ -25,10 +25,14 @@ defmodule PeopleWeb.PersonController do
     render(conn, :show, person: person)
   end
 
-  def update(conn, %{"id" => id, "name" => name, "notes" => notes, "avatar" => avatar}) do
+  def update(conn, all = %{"id" => id}) do
     person = Notes.get_person!(id)
 
-    with {:ok, %Person{} = person} <- Notes.update_person(person, %{name: name, notes: notes, avatar: avatar}) do
+    # It's a shame that %{"id" => id | rest} doesn't work
+    # similar to the spread operator in JS: {id: 'id', ...rest}
+    person_params = Map.delete(all, "id")
+
+    with {:ok, %Person{} = person} <- Notes.update_person(person, person_params) do
       render(conn, :show, person: person)
     end
   end
