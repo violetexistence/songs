@@ -5,14 +5,14 @@ defmodule PeopleWeb.PersonJSON do
   Renders a list of people.
   """
   def index(%{people: people}) do
-    %{data: for(person <- people, do: data(person))}
+    for(person <- people, do: data(person))
   end
 
   @doc """
   Renders a single person.
   """
   def show(%{person: person}) do
-    %{data: data(person)}
+    data(person)
   end
 
   defp data(%Person{} = person) do

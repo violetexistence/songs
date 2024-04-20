@@ -11,7 +11,7 @@ defmodule PeopleWeb.PersonController do
     render(conn, :index, people: people)
   end
 
-  def create(conn, %{"person" => person_params}) do
+  def create(conn, person_params) do
     with {:ok, %Person{} = person} <- Notes.create_person(person_params) do
       conn
       |> put_status(:created)
@@ -25,10 +25,10 @@ defmodule PeopleWeb.PersonController do
     render(conn, :show, person: person)
   end
 
-  def update(conn, %{"id" => id, "person" => person_params}) do
+  def update(conn, %{"id" => id, "name" => name, "notes" => notes, "avatar" => avatar}) do
     person = Notes.get_person!(id)
 
-    with {:ok, %Person{} = person} <- Notes.update_person(person, person_params) do
+    with {:ok, %Person{} = person} <- Notes.update_person(person, %{name: name, notes: notes, avatar: avatar}) do
       render(conn, :show, person: person)
     end
   end

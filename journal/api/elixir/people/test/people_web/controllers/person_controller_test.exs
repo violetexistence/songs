@@ -24,14 +24,14 @@ defmodule PeopleWeb.PersonControllerTest do
   describe "index" do
     test "lists all people", %{conn: conn} do
       conn = get(conn, ~p"/api/people")
-      assert json_response(conn, 200)["data"] == []
+      assert json_response(conn, 200) == []
     end
   end
 
   describe "create person" do
     test "renders person when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/people", person: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      conn = post(conn, ~p"/api/people", @create_attrs)
+      assert %{"id" => id} = json_response(conn, 201)
 
       conn = get(conn, ~p"/api/people/#{id}")
 
@@ -40,11 +40,11 @@ defmodule PeopleWeb.PersonControllerTest do
                "avatar" => "some avatar",
                "name" => "some name",
                "notes" => "some notes"
-             } = json_response(conn, 200)["data"]
+             } = json_response(conn, 200)
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/people", person: @invalid_attrs)
+      conn = post(conn, ~p"/api/people", @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -53,8 +53,8 @@ defmodule PeopleWeb.PersonControllerTest do
     setup [:create_person]
 
     test "renders person when data is valid", %{conn: conn, person: %Person{id: id} = person} do
-      conn = put(conn, ~p"/api/people/#{person}", person: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+      conn = put(conn, ~p"/api/people/#{person}", @update_attrs)
+      assert %{"id" => ^id} = json_response(conn, 200)
 
       conn = get(conn, ~p"/api/people/#{id}")
 
@@ -63,11 +63,11 @@ defmodule PeopleWeb.PersonControllerTest do
                "avatar" => "some updated avatar",
                "name" => "some updated name",
                "notes" => "some updated notes"
-             } = json_response(conn, 200)["data"]
+             } = json_response(conn, 200)
     end
 
     test "renders errors when data is invalid", %{conn: conn, person: person} do
-      conn = put(conn, ~p"/api/people/#{person}", person: @invalid_attrs)
+      conn = put(conn, ~p"/api/people/#{person}", @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

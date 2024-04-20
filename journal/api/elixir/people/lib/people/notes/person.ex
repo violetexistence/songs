@@ -14,6 +14,6 @@ defmodule People.Notes.Person do
   def changeset(person, attrs) do
     person
     |> cast(attrs, [:name, :notes, :avatar])
-    |> validate_required([:name, :notes, :avatar])
+    |> validate_required([:name])
   end
 end
