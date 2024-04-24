@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { EditableTitle } from '../../components/editable/EditableTitle'
-import { Location } from '../../api/locations'
+import { Location } from '../../api/types'
 
 export type FrontProps = Location & {
   onUpdate?: (updated: Location) => void

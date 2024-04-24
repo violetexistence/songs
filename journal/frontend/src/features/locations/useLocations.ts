@@ -1,15 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import {
-  Location,
-  createLocation,
-  deleteLocation,
-  getLocations,
-  updateLocation,
-} from '../../api/locations'
+import { getLocationApi } from '../../api/locations'
+import { Location } from '../../api/types'
 import { useLocalStorage } from '../storage/local'
 
 const LOCATIONS_QUERY_KEY = 'locations'
 const LOCATIONS_SORT_STORAGE_KEY = 'journal.locations.sort'
+const api = getLocationApi()
 
 export function useLocations() {
   const [sortOrder, setSortOrder] = useLocalStorage<number[]>(
@@ -19,10 +15,10 @@ export function useLocations() {
   const queryClient = useQueryClient()
   const query = useQuery<Location[]>({
     queryKey: [LOCATIONS_QUERY_KEY],
-    queryFn: getLocations,
+    queryFn: api.getLocations,
   })
   const createMutation = useMutation({
-    mutationFn: createLocation,
+    mutationFn: api.createLocation,
     onSuccess: (result) => {
       queryClient.setQueryData([LOCATIONS_QUERY_KEY], (old: Location[]) =>
         old.concat(result)
@@ -30,7 +26,7 @@ export function useLocations() {
     },
   })
   const deleteMutation = useMutation({
-    mutationFn: deleteLocation,
+    mutationFn: api.deleteLocation,
     onSuccess: (result, variables) => {
       queryClient.setQueryData([LOCATIONS_QUERY_KEY], (old: Location[]) =>
         old.filter((p) => p.id != variables)
@@ -38,7 +34,7 @@ export function useLocations() {
     },
   })
   const updateMutation = useMutation({
-    mutationFn: updateLocation,
+    mutationFn: api.updateLocation,
     onSuccess: (result, variables) => {
       queryClient.setQueryData([LOCATIONS_QUERY_KEY], (old: Location[]) =>
         old.map((p) => (p.id === variables.id ? { ...variables } : p))
@@ -58,9 +54,8 @@ export function useLocations() {
 
   function sortLocations(locations: Location[], userSpecifiedSort: number[]) {
     const map = new Map(userSpecifiedSort.map((id, index) => [id, index]))
-    const getSortableValue = (p: Location) =>
-      map.get(p.id) ?? locations.length + p.id
-    return locations.sort((prev, next) => {
+    const getSortableValue = (p: Location) => map.get(p.id) ?? locations.length + p.id
+    return locations.toSorted((prev, next) => {
       return getSortableValue(prev) - getSortableValue(next)
     })
   }

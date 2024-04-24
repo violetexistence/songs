@@ -3,7 +3,7 @@ import { Person } from './types'
 import localStore from './people.local'
 
 const ENV: 'local' | 'remote' = import.meta.env.VITE_DATA_STORE ?? 'local'
-const PEOPLE_URL = `${import.meta.env.VITE_API_LOCATION || 'http://localhost:3000'}/people`
+const PEOPLE_URL = `${import.meta.env.VITE_API_LOCATION || 'http://localhost:3333'}/people`
 
 const url = (id?: number) => {
   return id ? `${PEOPLE_URL}/${id}` : PEOPLE_URL
@@ -34,7 +34,8 @@ const remoteStore: PeopleApi = {
 
 export function getPeopleApi(): PeopleApi {
   if (ENV === 'local') {
-    return localStore
+    localStore.getPeople()
+    return remoteStore
   }
   return remoteStore
 }

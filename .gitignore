@@ -157,3 +157,4 @@ journal/api/csharp/api/.vs/
 journal/api/csharp/api/bin/
 journal/api/csharp/api/obj/
 journal/api/csharp/dal/obj/
+journal/frontend/package-lock.json

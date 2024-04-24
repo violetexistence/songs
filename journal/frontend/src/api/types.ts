@@ -4,3 +4,10 @@ export type Person = {
   notes?: string
   avatar?: string
 }
+
+export type Location = {
+  id: number
+  name: string
+  notes?: string
+  image?: string
+}
