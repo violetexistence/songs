@@ -3,10 +3,10 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Location } from '../../api/types'
 import { AddButton } from '../../components/button/AddButton'
 import { CardBack } from '../../components/card/CardBack'
+import { CardFront } from '../../components/card/CardFront'
 import { CardContainer } from '../../components/card/CardContainer'
 import { useNavActions } from '../nav/useNavActions'
 import defaultAvatar from '../../assets/maps/DragonAgeWorld.jpg'
-import { Front } from './CardFront'
 import { useLocations } from './useLocations'
 import './locations.css'
 import { UniquelyIdentifiable } from '../../util/UniquelyIdentifiable'
@@ -38,7 +38,21 @@ function LocationCardBack({ item }: { item: Location }) {
 }
 
 function LocationCardFront({ item }: { item: Location }) {
-  return <Front {...item} />
+  const { update } = useLocations()
+  const handleUpdate = useCallback(
+    (updated: Location) => {
+      update(updated)
+    },
+    [update]
+  )
+  return (
+    <CardFront
+      id={item.id}
+      name={item.name}
+      notes={item.notes ?? ''}
+      onUpdate={handleUpdate}
+    />
+  )
 }
 
 export function LocationCards() {
