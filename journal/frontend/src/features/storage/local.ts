@@ -35,7 +35,8 @@ export function useLocalStorage<TValue = string>(
     }
 
     const cleanupHandlers = receiveStorageChangeEvents(key, (value) => {
-      onLocalStorageChange(parseJSON(value))
+      const unSerialized = typeof value === 'string' ? parseJSON(value) : value
+      onLocalStorageChange(unSerialized as TValue | null) // Add type assertion
     })
 
     if (getFromStore(key) === null && defaultValue !== null) {

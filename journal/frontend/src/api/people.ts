@@ -34,8 +34,7 @@ const remoteStore: PeopleApi = {
 
 export function getPeopleApi(): PeopleApi {
   if (ENV === 'local') {
-    localStore.getPeople()
-    return remoteStore
+    return localStore
   }
   return remoteStore
 }

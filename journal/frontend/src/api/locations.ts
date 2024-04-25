@@ -33,8 +33,7 @@ const remoteStore: LocationApi = {
 }
 export function getLocationApi(): LocationApi {
   if (ENV === 'local') {
-    localStore.getLocations()
-    return remoteStore
+    return localStore
   }
   return remoteStore
 }
