@@ -1,18 +1,18 @@
 import { useRef, useState } from 'react'
 import { EditableTitle } from '../../components/editable/EditableTitle'
-import { Person } from '../../api/types'
 
-export type FrontProps = Person & {
-  onUpdate?: (updated: Person) => void
+export type FrontProps = {
+    id:number,
+    name:string,
+    notes: string,
+    onUpdate: (updated: { id: number, name: string, notes: string }) => void
 }
 
-export function Front({
+export function CardFront({ 
   id,
-  name,
-  notes: abstract,
-  avatar,
-  onUpdate,
-}: FrontProps) {
+  name, 
+  notes: abstract, 
+  onUpdate}: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
 
@@ -31,7 +31,6 @@ export function Front({
     onUpdate &&
       onUpdate({
         id,
-        avatar,
         name: currentName,
         notes: currentAbstract,
       })

@@ -3,10 +3,10 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react'
 import { Person } from '../../api/types'
 import { AddButton } from '../../components/button/AddButton'
 import { CardBack } from '../../components/card/CardBack'
+import { CardFront } from '../../components/card/CardFront'
 import { CardContainer } from '../../components/card/CardContainer'
 import { chooseDefaultAvatar } from '../avatars/avatars'
 import { useNavActions } from '../nav/useNavActions'
-import { Front } from './CardFront'
 import './people.css'
 import { usePeople } from './usePeople'
 
@@ -28,7 +28,7 @@ function PersonCardBack({ item }: { item: Person }) {
   )
 
   const defaultAvatar = useMemo(() => {
-    return chooseDefaultAvatar(item.id, 'people')
+    return item.avatar = chooseDefaultAvatar(item.id, 'people')
   }, [item])
 
   return (
@@ -41,7 +41,23 @@ function PersonCardBack({ item }: { item: Person }) {
 }
 
 function PersonCardFront({ item }: { item: Person }) {
-  return <Front {...item} />
+  const { update } = usePeople()
+  
+  const handleUpdate = useCallback(
+    (updated: Person) => {
+      update(updated)
+    },
+    [update]
+  )
+
+  return (
+    <CardFront 
+      id={item.id}
+      name={item.name}
+      notes={item.notes?? ''}
+      onUpdate={ handleUpdate }
+    />
+  )
 }
 
 export function PeopleCards() {

@@ -6,11 +6,12 @@ import { ActiveDropzoneLayer, Dropzone } from '../../components/dnd/Dropzone'
 
 type Props = {
   image: string
+  name?: string
   onImageChange?: (newImage: string) => void
   onDelete?: () => void
 }
 
-export function CardBack({ image, onImageChange, onDelete }: Props) {
+export function CardBack({ image, name, onImageChange, onDelete }: Props) {
   const onDrop = useCallback(
     (image: string) => {
       onImageChange && onImageChange(image)
@@ -53,6 +54,7 @@ export function CardBack({ image, onImageChange, onDelete }: Props) {
           >
             Confirm Delete
           </Button>
+          <>${name}</>
         </div>
       )}
       <ActiveDropzoneLayer>Drop to Update Avatar</ActiveDropzoneLayer>
