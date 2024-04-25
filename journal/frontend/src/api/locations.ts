@@ -29,11 +29,11 @@ const remoteStore: LocationApi = {
   updateLocation: (location) => {
     const { id, ...other } = location
     return axios.put(url(id), other).then((res) => res.data)
-  }
+  },
 }
 export function getLocationApi(): LocationApi {
-  if(ENV === 'local'){
-    localStore.getLocations();
+  if (ENV === 'local') {
+    localStore.getLocations()
     return remoteStore
   }
   return remoteStore

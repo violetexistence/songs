@@ -1,4 +1,3 @@
-import { LocationCards } from '../features/locations/LocationCards'
 import { getFromStore, writeToStore } from '../features/storage/store'
 import { Location } from './types'
 
@@ -16,24 +15,24 @@ const seedLocation: Location[] = [
   },
 ]
 
-function getLocationFromLocalStore(): Location[]{
+function getLocationFromLocalStore(): Location[] {
   return getFromStore(LOCATION_LOCAL_STORAGE_KEY, seedLocation) ?? []
 }
 
-function assignId(newLocation: Omit<Location, 'id'>):Location {
-  return{
+function assignId(newLocation: Omit<Location, 'id'>): Location {
+  return {
     id: new Date().getTime(),
     ...newLocation,
   }
 }
 
-function replaceLocationInLocalStore(locations: Location[]){
+function replaceLocationInLocalStore(locations: Location[]) {
   writeToStore(LOCATION_LOCAL_STORAGE_KEY, locations)
   return locations
 }
 export default {
   getLocations: () => {
-     Promise.resolve(getLocationFromLocalStore())
+    Promise.resolve(getLocationFromLocalStore())
   },
   createLocations: (location: Omit<Location, 'id'>) => {
     const newLocation = assignId(location)
@@ -41,18 +40,18 @@ export default {
     return Promise.resolve(newLocation)
   },
   updateLocations: (location: Location) => {
-     const all = getLocationFromLocalStore()
-     const index = all.findIndex((p)=> p.id === location.id)
-     
-     if(index > -1){
+    const all = getLocationFromLocalStore()
+    const index = all.findIndex((p) => p.id === location.id)
+
+    if (index > -1) {
       const existingLocation = all.at(index)
-      const updatedPerson = {...existingLocation, ...location}
+      const updatedPerson = { ...existingLocation, ...location }
       all[index] = updatedPerson
       replaceLocationInLocalStore(all)
       return Promise.resolve(updatedPerson)
-     }
+    }
   },
-  deleteLocations: (id: number) => { 
+  deleteLocations: (id: number) => {
     Promise.reject(new Error(`Not yet implemented ${id}.`))
-  }
+  },
 }

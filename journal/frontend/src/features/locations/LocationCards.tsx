@@ -11,7 +11,7 @@ import { useLocations } from './useLocations'
 import './locations.css'
 import { UniquelyIdentifiable } from '../../util/UniquelyIdentifiable'
 
-function LocationCardBack ({ item }: {item: Location}) {
+function LocationCardBack({ item }: { item: Location }) {
   const { update, remove } = useLocations()
 
   const handleDelete = useCallback(() => {
@@ -42,7 +42,7 @@ function LocationCardFront({ item }: { item: Location }) {
 }
 
 export function LocationCards() {
-  const { locations,  reorder, create } = useLocations()
+  const { locations, reorder, create } = useLocations()
   const [filter, setFilter] = useState('')
 
   const navActions = useMemo(
@@ -51,7 +51,7 @@ export function LocationCards() {
   )
 
   useNavActions(navActions)
-  
+
   const handleReorder = (items: Location[]) => {
     reorder(items.map((i) => i.id))
   }
@@ -59,7 +59,7 @@ export function LocationCards() {
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value)
   }
-  
+
   const searchPredicate = useCallback(
     (location: Location) => {
       return location.name.toLowerCase().includes(filter?.toLowerCase())
@@ -85,8 +85,12 @@ export function LocationCards() {
       </section>
       <CardContainer
         items={filteredLocations}
-        CardFrontComponent={({ item }: { item: UniquelyIdentifiable }) => <LocationCardFront item={item as Location} />}
-        CardBackComponent={({ item }: { item: Location }) => <LocationCardBack item={item} />} // Update the type of cardBack prop
+        CardFrontComponent={({ item }: { item: UniquelyIdentifiable }) => (
+          <LocationCardFront item={item as Location} />
+        )}
+        CardBackComponent={({ item }: { item: Location }) => (
+          <LocationCardBack item={item} />
+        )} // Update the type of cardBack prop
         onReorder={handleReorder as (items: UniquelyIdentifiable[]) => void} // Cast handleReorder to accept UniquelyIdentifiable[]
       />
     </section>

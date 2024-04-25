@@ -54,7 +54,8 @@ export function useLocations() {
 
   function sortLocations(locations: Location[], userSpecifiedSort: number[]) {
     const map = new Map(userSpecifiedSort.map((id, index) => [id, index]))
-    const getSortableValue = (p: Location) => map.get(p.id) ?? locations.length + p.id
+    const getSortableValue = (p: Location) =>
+      map.get(p.id) ?? locations.length + p.id
     return locations.toSorted((prev, next) => {
       return getSortableValue(prev) - getSortableValue(next)
     })

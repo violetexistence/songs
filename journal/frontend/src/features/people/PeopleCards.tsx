@@ -28,7 +28,7 @@ function PersonCardBack({ item }: { item: Person }) {
   )
 
   const defaultAvatar = useMemo(() => {
-    return item.avatar = chooseDefaultAvatar(item.id, 'people')
+    return (item.avatar = chooseDefaultAvatar(item.id, 'people'))
   }, [item])
 
   return (
@@ -42,7 +42,7 @@ function PersonCardBack({ item }: { item: Person }) {
 
 function PersonCardFront({ item }: { item: Person }) {
   const { update } = usePeople()
-  
+
   const handleUpdate = useCallback(
     (updated: Person) => {
       update(updated)
@@ -51,11 +51,11 @@ function PersonCardFront({ item }: { item: Person }) {
   )
 
   return (
-    <CardFront 
+    <CardFront
       id={item.id}
       name={item.name}
-      notes={item.notes?? ''}
-      onUpdate={ handleUpdate }
+      notes={item.notes ?? ''}
+      onUpdate={handleUpdate}
     />
   )
 }

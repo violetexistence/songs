@@ -2,17 +2,13 @@ import { useRef, useState } from 'react'
 import { EditableTitle } from '../../components/editable/EditableTitle'
 
 export type FrontProps = {
-    id:number,
-    name:string,
-    notes: string,
-    onUpdate: (updated: { id: number, name: string, notes: string }) => void
+  id: number
+  name: string
+  notes: string
+  onUpdate: (updated: { id: number; name: string; notes: string }) => void
 }
 
-export function CardFront({ 
-  id,
-  name, 
-  notes: abstract, 
-  onUpdate}: FrontProps) {
+export function CardFront({ id, name, notes: abstract, onUpdate }: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
 
