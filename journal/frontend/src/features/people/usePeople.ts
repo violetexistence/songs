@@ -1,15 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import {
-  Person,
-  createPerson,
-  deletePerson,
-  getPeople,
-  updatePerson,
-} from '../../api/people'
+import { getPeopleApi } from '../../api/people'
+import { Person } from '../../api/types'
 import { useLocalStorage } from '../storage/local'
 
 const PEOPLE_QUERY_KEY = 'people'
 const PEOPLE_SORT_STORAGE_KEY = 'journal.people.sort'
+const api = getPeopleApi()
 
 export function usePeople() {
   const [sortOrder, setSortOrder] = useLocalStorage<number[]>(
@@ -19,10 +15,10 @@ export function usePeople() {
   const queryClient = useQueryClient()
   const query = useQuery<Person[]>({
     queryKey: [PEOPLE_QUERY_KEY],
-    queryFn: getPeople,
+    queryFn: api.getPeople,
   })
   const createMutation = useMutation({
-    mutationFn: createPerson,
+    mutationFn: api.createPerson,
     onSuccess: (result) => {
       queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
         old.concat(result)
@@ -30,7 +26,7 @@ export function usePeople() {
     },
   })
   const deleteMutation = useMutation({
-    mutationFn: deletePerson,
+    mutationFn: api.deletePerson,
     onSuccess: (result, variables) => {
       queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
         old.filter((p) => p.id != variables)
@@ -38,7 +34,7 @@ export function usePeople() {
     },
   })
   const updateMutation = useMutation({
-    mutationFn: updatePerson,
+    mutationFn: api.updatePerson,
     onSuccess: (result, variables) => {
       queryClient.setQueryData([PEOPLE_QUERY_KEY], (old: Person[]) =>
         old.map((p) => (p.id === variables.id ? { ...variables } : p))

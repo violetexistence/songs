@@ -1,18 +1,14 @@
 import { useRef, useState } from 'react'
 import { EditableTitle } from '../../components/editable/EditableTitle'
-import { Location } from '../../api/locations'
 
-export type FrontProps = Location & {
-  onUpdate?: (updated: Location) => void
+export type FrontProps = {
+  id: number
+  name: string
+  notes: string
+  onUpdate: (updated: { id: number; name: string; notes: string }) => void
 }
 
-export function Front({
-  id,
-  name,
-  notes: abstract,
-  image,
-  onUpdate,
-}: FrontProps) {
+export function CardFront({ id, name, notes: abstract, onUpdate }: FrontProps) {
   const [currentName, setCurrentName] = useState(name)
   const [currentAbstract, setCurrentAbstract] = useState(abstract)
 
@@ -31,7 +27,6 @@ export function Front({
     onUpdate &&
       onUpdate({
         id,
-        image,
         name: currentName,
         notes: currentAbstract,
       })
@@ -48,9 +43,9 @@ export function Front({
       >
         <input
           type="text"
-          name="location-name"
+          name="contact-name"
           ref={nameRef}
-          placeholder="New location name"
+          placeholder="New contact name"
           value={currentName}
           onChange={(e) => setCurrentName(e.target.value)}
         />

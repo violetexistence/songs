@@ -1,16 +1,68 @@
 import { TextField } from '@mui/material'
 import { ChangeEvent, useCallback, useMemo, useState } from 'react'
-import { Person } from '../../api/people'
+import { Person } from '../../api/types'
 import { AddButton } from '../../components/button/AddButton'
+import { CardBack } from '../../components/card/CardBack'
+import { CardFront } from '../../components/card/CardFront'
 import { CardContainer } from '../../components/card/CardContainer'
+import { chooseDefaultAvatar } from '../avatars/avatars'
 import { useNavActions } from '../nav/useNavActions'
-import { Back } from './CardBack'
-import { Front } from './CardFront'
 import './people.css'
 import { usePeople } from './usePeople'
 
+function PersonCardBack({ item }: { item: Person }) {
+  const { update, remove } = usePeople()
+
+  const handleDelete = useCallback(() => {
+    remove(item.id)
+  }, [remove, item])
+
+  const handleImageChange = useCallback(
+    (image: string) => {
+      update({
+        ...item,
+        avatar: image,
+      })
+    },
+    [update, item]
+  )
+
+  const defaultAvatar = useMemo(() => {
+    return (item.avatar = chooseDefaultAvatar(item.id, 'people'))
+  }, [item])
+
+  return (
+    <CardBack
+      image={item.avatar ?? defaultAvatar}
+      name={item.name}
+      onDelete={handleDelete}
+      onImageChange={handleImageChange}
+    />
+  )
+}
+
+function PersonCardFront({ item }: { item: Person }) {
+  const { update } = usePeople()
+
+  const handleUpdate = useCallback(
+    (updated: Person) => {
+      update(updated)
+    },
+    [update]
+  )
+
+  return (
+    <CardFront
+      id={item.id}
+      name={item.name}
+      notes={item.notes ?? ''}
+      onUpdate={handleUpdate}
+    />
+  )
+}
+
 export function PeopleCards() {
-  const { people, update, reorder, create } = usePeople()
+  const { people, reorder, create } = usePeople()
   const [filter, setFilter] = useState('')
 
   const navActions = useMemo(
@@ -20,24 +72,12 @@ export function PeopleCards() {
 
   useNavActions(navActions)
 
-  const handleUpdate = (updated: Person) => {
-    update(updated)
-  }
-
   const handleReorder = (items: Person[]) => {
     reorder(items.map((i) => i.id))
   }
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value)
-  }
-
-  const frontTemplate = (item: Person) => {
-    return <Front {...item} onUpdate={handleUpdate} />
-  }
-
-  const backTemplate = (item: Person) => {
-    return <Back person={item} />
   }
 
   const searchPredicate = useCallback(
@@ -65,8 +105,8 @@ export function PeopleCards() {
       </section>
       <CardContainer
         items={filteredPeople}
-        cardFront={frontTemplate}
-        cardBack={backTemplate}
+        CardFrontComponent={PersonCardFront}
+        CardBackComponent={PersonCardBack}
         onReorder={handleReorder}
       />
     </section>

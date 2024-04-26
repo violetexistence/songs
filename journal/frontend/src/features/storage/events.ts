@@ -48,6 +48,7 @@ function isLocalStorageChangeEvent(
 }
 
 function isStorageEvent(e: unknown): e is StorageEvent {
+  console.log(`isStorageEvent: ${JSON.stringify(e)} `)
   return (e as StorageEvent).newValue !== undefined
 }
 

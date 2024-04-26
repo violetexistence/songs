@@ -19,15 +19,15 @@ import { SortableCard } from './SortableCard'
 
 export type CardContainerProps<TItem extends UniquelyIdentifiable> = {
   items: TItem[]
-  cardFront: (item: TItem) => ReactNode
-  cardBack?: (item: TItem) => ReactNode
+  CardFrontComponent: ({ item }: { item: TItem }) => ReactNode
+  CardBackComponent: ({ item }: { item: TItem }) => ReactNode
   onReorder?: (items: TItem[]) => void
 }
 
 export function CardContainer<TItem extends UniquelyIdentifiable>({
   items,
-  cardFront,
-  cardBack,
+  CardFrontComponent,
+  CardBackComponent,
   onReorder,
 }: CardContainerProps<TItem>) {
   const [isMoving, setMoving] = useState(false)
@@ -72,8 +72,12 @@ export function CardContainer<TItem extends UniquelyIdentifiable>({
           {items.map((i) => {
             return (
               <SortableCard key={i.id} item={i}>
-                <div className="front">{cardFront(i)}</div>
-                <div className="back">{cardBack && cardBack(i)}</div>
+                <div className="front">
+                  <CardFrontComponent item={i} />
+                </div>
+                <div className="back">
+                  <CardBackComponent item={i} />
+                </div>
               </SortableCard>
             )
           })}
