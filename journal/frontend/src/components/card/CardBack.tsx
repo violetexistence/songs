@@ -39,6 +39,7 @@ export function CardBack({ image, name, onImageChange, onDelete }: Props) {
         backgroundImage: `url(${image})`,
       }}
     >
+      <h3 className="name">{name}</h3>
       <PositionedButton
         corner="TopRight"
         onClick={() => showConfirmDelete(true)}
@@ -54,7 +55,6 @@ export function CardBack({ image, name, onImageChange, onDelete }: Props) {
           >
             Confirm Delete
           </Button>
-          <>${name}</>
         </div>
       )}
       <ActiveDropzoneLayer>Drop to Update Avatar</ActiveDropzoneLayer>

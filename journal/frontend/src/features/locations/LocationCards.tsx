@@ -31,6 +31,7 @@ function LocationCardBack({ item }: { item: Location }) {
   return (
     <CardBack
       image={item.image ?? defaultAvatar}
+      name={item.name}
       onDelete={handleDelete}
       onImageChange={handleImageChange}
     />

@@ -34,6 +34,7 @@ function PersonCardBack({ item }: { item: Person }) {
   return (
     <CardBack
       image={item.avatar ?? defaultAvatar}
+      name={item.name}
       onDelete={handleDelete}
       onImageChange={handleImageChange}
     />

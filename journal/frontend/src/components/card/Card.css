@@ -45,7 +45,14 @@ body {
     object-fit: cover;
     object-position: top;
   }
-
+  
+  .name {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0.5em 0;
+    color:antiquewhite
+  }
   .toggle-menu-button {
     background: none;
     position: absolute;
