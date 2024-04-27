@@ -1,3 +1,5 @@
+using Dal;
+using Microsoft.EntityFrameworkCore;
 
 namespace webapi {
     public class Program {
@@ -10,6 +12,7 @@ namespace webapi {
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<Dal.Models.SongsContext>();
 
             var app = builder.Build();
 
