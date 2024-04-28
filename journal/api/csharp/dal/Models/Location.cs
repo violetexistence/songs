@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Dal.Models;
 
 [Table("Location")]
-public partial class Location
-{
+public partial class Location {
     [Key]
     public int LocationId { get; set; }
 

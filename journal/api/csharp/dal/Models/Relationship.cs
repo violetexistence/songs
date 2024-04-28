@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Dal.Models;
 
 [Table("Relationship")]
-public partial class Relationship
-{
+public partial class Relationship {
     [Key]
     public int RelationshipId { get; set; }
 

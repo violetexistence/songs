@@ -2,15 +2,11 @@
 
 namespace Dal.Models;
 
-public partial class SongsContext : DbContext
-{
-    public SongsContext()
-    {
+public partial class SongsContext : DbContext {
+    public SongsContext() {
     }
 
-    public SongsContext(DbContextOptions<SongsContext> options)
-        : base(options)
-    {
+    public SongsContext(DbContextOptions<SongsContext> options) : base(options) {
     }
 
     public virtual DbSet<Location> Locations { get; set; }
@@ -23,16 +19,13 @@ public partial class SongsContext : DbContext
 
     public virtual DbSet<RelationshipType> RelationshipTypes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         var connectionString = Environment.GetEnvironmentVariable("SONGS_CONNECTION_STRING");
         optionsBuilder.UseSqlServer(connectionString);
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Relationship>(entity =>
-        {
+    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        modelBuilder.Entity<Relationship>(entity => {
             entity.HasKey(e => e.RelationshipId).HasName("PK_Relationshp");
         });
 

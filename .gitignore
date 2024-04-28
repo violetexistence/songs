@@ -162,3 +162,5 @@ journal/frontend/vite.config.mts.timestamp-1714007476333-f79e154c3053a.mjs
 journal/api/csharp/dal/.vs/
 journal/api/csharp/dal/bin/
 journal/api/csharp/dal/efpt.config.json.user
+journal/api/csharp/WebApi_Test/obj/Debug/net8.0/WebApi_Test.AssemblyInfo.cs
+journal/api/csharp/WebApi_Test/obj/
