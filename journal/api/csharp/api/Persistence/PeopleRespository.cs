@@ -26,26 +26,6 @@ namespace WebApi.Persistence {
             throw new NotImplementedException();
         }
 
-        public Task<Location> GetLocation(int id) {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> AddLocation(Location location) {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateLocation(Location location) {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteLocation(int id) {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> LocationExists(int id) {
-            throw new NotImplementedException();
-        }
-
         public Task<IEnumerable<Relationship>> GetRelationships() {
             throw new NotImplementedException();
         }

@@ -1,7 +1,7 @@
 ﻿using Dal.Models;
 
 namespace WebApi.Persistence {
-    public interface ISongsRepository {
+    public interface IPeopleRepository {
         // Tasks for managing people
         Task<IEnumerable<Person>> GetPeople();
         Task<Person> GetPerson(int id);
@@ -17,13 +17,5 @@ namespace WebApi.Persistence {
         Task UpdateRelationship(Relationship relationship);
         Task DeleteRelationship(int id);
         Task<bool> RelationshipExists(int id);
-
-        //Tasks for managing relationship types
-        Task<IEnumerable<RelationshipType>> GetRelationshipTypes();
-        Task<RelationshipType> GetRelationshipType(int id);
-        Task<int> AddRelationshipType(RelationshipType relationshipType);
-        Task UpdateRelationshipType(RelationshipType relationshipType);
-        Task DeleteRelationshipType(int id);
-        Task<bool> RelationshipTypeExists(int id);
     }
 }
