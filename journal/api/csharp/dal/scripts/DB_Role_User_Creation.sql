@@ -12,3 +12,8 @@ GO
 
 ALTER ROLE [trusted_app_role] ADD MEMBER [songs-service]
 GO
+
+USE [songs]
+GO
+GRANT VIEW DEFINITION TO [trusted_app_role]
+GO

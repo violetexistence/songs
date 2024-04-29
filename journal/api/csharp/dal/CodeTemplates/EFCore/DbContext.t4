@@ -15,7 +15,6 @@
 <#@ import namespace="Microsoft.EntityFrameworkCore.Scaffolding" #>
 <#@ import namespace="Microsoft.Extensions.DependencyInjection" #>
 <#
-    // Template version: 800 - please do NOT remove this line
     if (!ProductInfo.GetVersion().StartsWith("8.0"))
     {
         Warning("Your templates were created using an older version of Entity Framework. Additional features and bug fixes may be available. See https://aka.ms/efcore-docs-updating-templates for more information.");
@@ -82,11 +81,14 @@ public partial class <#= Options.ContextName #> : DbContext
     if (!Options.SuppressConnectionStringWarning)
     {
 #>
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
 <#
     }
+
+    var useProviderCall = providerCode.GenerateUseProvider(Options.ConnectionString);
+    usings.AddRange(useProviderCall.GetRequiredUsings());
 #>
-        => optionsBuilder<#= code.Fragment(providerCode.GenerateUseProvider(Options.ConnectionString), indent: 3) #>;
+        => optionsBuilder<#= code.Fragment(useProviderCall, indent: 3) #>;
 
 <#
     }

@@ -27,4 +27,13 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CodeTemplates\EFCore\DbContext.t4">
+      <CustomToolNamespace>Dal</CustomToolNamespace>
+    </None>
+    <None Update="CodeTemplates\EFCore\EntityType.t4">
+      <CustomToolNamespace>Dal</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
 </Project>

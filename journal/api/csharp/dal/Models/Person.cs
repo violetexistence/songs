@@ -1,17 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Dal.Models;
 
-[Table("Person")]
-public partial class Person {
-    [Key]
+public partial class Person
+{
     public int PersonId { get; set; }
 
-    [Required]
-    [StringLength(150)]
     public string Name { get; set; } = null!;
 
-    [StringLength(400)]
     public string? Notes { get; set; }
+
+    public virtual ICollection<PersonLocation> PersonLocations { get; set; } = new List<PersonLocation>();
+
+    public virtual ICollection<Relationship> RelationshipFromPeople { get; set; } = new List<Relationship>();
+
+    public virtual ICollection<Relationship> RelationshipToPeople { get; set; } = new List<Relationship>();
 }
