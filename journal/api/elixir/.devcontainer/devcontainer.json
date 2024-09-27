@@ -1,0 +1,17 @@
+{
+  "name": "people-api-on-elixir",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+
+      },
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "JakeBecker.elixir-ls"
+      ]
+    }
+  }
+}
